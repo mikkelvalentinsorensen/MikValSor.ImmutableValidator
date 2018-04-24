@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>Immutable Validator .NET</PackageTags>
+    <PackageTags>Immutable Validator .NET MikValSor</PackageTags>
     <PackageReleaseNotes>1.0.0 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
