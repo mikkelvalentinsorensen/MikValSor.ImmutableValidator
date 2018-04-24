@@ -3,7 +3,7 @@
 namespace MikValSor.Immutable.Test
 {
 	[TestFixture]
-	public class ImmutableValidatorFieldsTest
+	public class ImmutableValidatorClassFieldsTest
 	{
 		private sealed class PrivateStringGetTestClass
 		{

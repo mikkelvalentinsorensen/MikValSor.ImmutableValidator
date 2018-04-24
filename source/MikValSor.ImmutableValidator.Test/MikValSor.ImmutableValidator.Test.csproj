@@ -41,8 +41,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImmutableValidatorFieldsTest.cs" />
-    <Compile Include="ImmutableValidatorVariabelsTest.cs" />
+    <Compile Include="ImmutableValidatorStructTypesTest.cs" />
+    <Compile Include="ImmutableValidatorClassFieldsTest.cs" />
+    <Compile Include="ImmutableValidatorClassVariabelsTest.cs" />
     <Compile Include="ImmutableValidatorClassTypesTest.cs" />
     <Compile Include="ImmutableValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
