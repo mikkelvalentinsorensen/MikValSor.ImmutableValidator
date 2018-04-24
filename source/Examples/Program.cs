@@ -1,6 +1,12 @@
-Library for validating that .NET classes are immutable.
+﻿class Program
+{
 
-```cs
+static void Main(string[] args)
+{
+	var program = new Program();
+	program.Validate();
+}
+
 class MyClass
 {
 	public string Value;
@@ -32,4 +38,7 @@ void Validate()
 	Is myObject immutable: False
 	Is myOtherObject immutable: True
 **/
-```
+
+
+
+}

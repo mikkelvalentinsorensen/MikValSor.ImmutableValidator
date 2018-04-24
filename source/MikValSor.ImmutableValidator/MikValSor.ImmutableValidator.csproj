@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
+    <AssemblyName>MikValSor.ImmutableValidator</AssemblyName>
+    <RootNamespace>MikValSor.Immutable</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Mikkel Valentin Sørensen</Authors>
+    <Company>Mikkel Valentin Sørensen</Company>
+    <Description>Library for validating that .NET classes are immutable.</Description>
+    <Copyright>Mikkel Valentin Sørensen</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>Immutable Validator .NET</PackageTags>
+    <PackageReleaseNotes>1.0.0 - Initial release.</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\MikValSor.ImmutableValidator.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
