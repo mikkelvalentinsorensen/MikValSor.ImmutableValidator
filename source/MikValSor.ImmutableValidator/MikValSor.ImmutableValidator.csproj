@@ -27,4 +27,8 @@
     <DocumentationFile>bin\Debug\netstandard2.0\MikValSor.ImmutableValidator.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\MikValSor.ImmutableValidator.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
