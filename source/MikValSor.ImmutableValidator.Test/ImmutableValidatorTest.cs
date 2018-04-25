@@ -6,7 +6,7 @@ namespace MikValSor.Immutable.Test
 	public class ImmutableValidatorTest
 	{
 		[Test]
-		public void IsImmutable_construct()
+		public void ImmutableValidator_construct()
 		{
 			//Act
 			new ImmutableValidator();
