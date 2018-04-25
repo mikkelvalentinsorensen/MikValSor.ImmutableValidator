@@ -41,10 +41,16 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImmutableValidatorStructFieldsTest.cs" />
+    <Compile Include="ImmutableValidatorStructVariabelsTest.cs" />
     <Compile Include="ImmutableValidatorStructTypesTest.cs" />
     <Compile Include="ImmutableValidatorClassFieldsTest.cs" />
     <Compile Include="ImmutableValidatorClassVariabelsTest.cs" />
     <Compile Include="ImmutableValidatorClassTypesTest.cs" />
+    <Compile Include="ImmutableValidatorInterfaceTest.cs" />
+    <Compile Include="ImmutableValidatorNullTest.cs" />
+    <Compile Include="ImmutableValidatorObjectTest.cs" />
+    <Compile Include="ImmutableValidatorValuesTypeTest.cs" />
     <Compile Include="ImmutableValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
