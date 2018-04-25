@@ -15,10 +15,20 @@
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>1.0.1 - Fixed bug where enums reported as not immutable. Fixed bug where when validation null and type of null threw exception.
-1.0.0 - Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>v1.0.2
+- Fixed bug where targetType null returned true.
+- Added missing documentation output in release.
+- Added better exception documentation.
+- Changer incorect filename of NotImmutableException
+
+v1.0.1 
+- Fixed bug where enums reported as not immutable. 
+- Fixed bug where when validation null and type of null threw exception.
+
+v1.0.0
+- Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
