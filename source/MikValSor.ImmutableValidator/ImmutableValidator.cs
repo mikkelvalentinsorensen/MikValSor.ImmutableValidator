@@ -49,9 +49,12 @@ namespace MikValSor.Immutable
 		/// <returns>
 		///		Return True if Type garentirs immutablilty.
 		/// </returns>
+		/// <exception cref="ArgumentNullException">
+		///		Throws System.ArgumentNullException if targetType is null.
+		/// </exception>
 		public bool IsImmutable(Type targetType)
 		{
-			if (targetType == null) return true;
+			if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 			try
 			{
 				EnsureImmutable(targetType, false);
@@ -69,6 +72,21 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted object for immutable validation.
 		/// </param>
+		/// <exception cref="ClassNotSealedException">
+		///		Throws MikValSor.Immutable.ClassNotSealedException if target or member of target should have been sealed.
+		/// </exception>
+		/// <exception cref="FieldIsNotInitOnlyException">
+		///		Throws MikValSor.Immutable.FieldIsNotInitOnlyException if target or member of target have fields that are setable.
+		/// </exception>
+		/// <exception cref="PropertyCanWriteException">
+		///		Throws MikValSor.Immutable.PropertyCanWriteException if target or member of target should have properties that can be set.
+		/// </exception>
+		/// <exception cref="TypeIsArrayException">
+		///		Throws MikValSor.Immutable.TypeIsArrayException if target or member of target have an array.
+		/// </exception>
+		/// <exception cref="TypeIsInterfaceException">
+		///		Throws MikValSor.Immutable.TypeIsInterfaceException if target or member of target is an interface.
+		/// </exception>
 		public void EnsureImmutable(object target)
 		{
 			if (target == null) return;
@@ -81,9 +99,27 @@ namespace MikValSor.Immutable
 		/// <param name="targetType">
 		///		Targeted type for immutable validation.
 		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///		Throws System.ArgumentNullException if targetType is null.
+		/// </exception>
+		/// <exception cref="ClassNotSealedException">
+		///		Throws MikValSor.Immutable.ClassNotSealedException if targetType or member of targetType should have been sealed.
+		/// </exception>
+		/// <exception cref="FieldIsNotInitOnlyException">
+		///		Throws MikValSor.Immutable.FieldIsNotInitOnlyException if targetType or member of targetType have fields that are setable.
+		/// </exception>
+		/// <exception cref="PropertyCanWriteException">
+		///		Throws MikValSor.Immutable.PropertyCanWriteException if targetType or member of targetType should have properties that can be set.
+		/// </exception>
+		/// <exception cref="TypeIsArrayException">
+		///		Throws MikValSor.Immutable.TypeIsArrayException if targetType or member of targetType have an array.
+		/// </exception>
+		/// <exception cref="TypeIsInterfaceException">
+		///		Throws MikValSor.Immutable.TypeIsInterfaceException if targetType or member of targetType is an interface.
+		/// </exception>
 		public void EnsureImmutable(Type targetType)
 		{
-			if (targetType == null) return;
+			if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 			EnsureImmutable(targetType, false);
 		}
 

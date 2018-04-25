@@ -27,10 +27,18 @@ namespace MikValSor.Immutable.Test
 			System.Type target = null;
 
 			//Act
-			var actual = validator.IsImmutable(target);
+			try
+			{
+				var actual = validator.IsImmutable(target);
+			}
 
 			//Assert
-			Assert.IsTrue(actual);
+			catch (System.ArgumentNullException)
+			{
+				Assert.Pass();
+				return;
+			}
+			Assert.Fail();
 		}
 
 	}
