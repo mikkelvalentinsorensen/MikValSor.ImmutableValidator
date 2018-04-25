@@ -28,6 +28,7 @@ namespace MikValSor.Immutable
 		/// </returns>
 		public bool IsImmutable(object target)
 		{
+			if (target == null) return true;
 			try
 			{
 				EnsureImmutable(target.GetType(), true);
@@ -50,6 +51,7 @@ namespace MikValSor.Immutable
 		/// </returns>
 		public bool IsImmutable(Type targetType)
 		{
+			if (targetType == null) return true;
 			try
 			{
 				EnsureImmutable(targetType, false);
@@ -69,6 +71,7 @@ namespace MikValSor.Immutable
 		/// </param>
 		public void EnsureImmutable(object target)
 		{
+			if (target == null) return;
 			EnsureImmutable(target.GetType(), true);
 		}
 
@@ -80,6 +83,7 @@ namespace MikValSor.Immutable
 		/// </param>
 		public void EnsureImmutable(Type targetType)
 		{
+			if (targetType == null) return;
 			EnsureImmutable(targetType, false);
 		}
 
