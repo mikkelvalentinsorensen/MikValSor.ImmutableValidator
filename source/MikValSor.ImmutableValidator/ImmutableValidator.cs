@@ -6,12 +6,12 @@ using System.Reflection;
 namespace MikValSor.Immutable
 {
 	/// <summary>
-	///		Class for validating value types, object and type definitions to check weather they are immutable.
+	///		Class for validating value types, object and type definitions to check if they are immutable.
 	/// </summary>
 	public class ImmutableValidator
 	{
 		/// <summary>
-		///		Construct a new instance of Immutable Validator.
+		///		Construct a new instance of ImmutableValidator.
 		/// </summary>
 		public ImmutableValidator()
 		{
@@ -47,7 +47,7 @@ namespace MikValSor.Immutable
 		///		Targeted type for immutable validation.
 		/// </param>
 		/// <returns>
-		///		Return True if Type garentirs immutablilty.
+		///		Return True if type guarantee immutablilty.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///		Throws System.ArgumentNullException if targetType is null.

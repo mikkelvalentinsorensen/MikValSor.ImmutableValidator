@@ -1,5 +1,6 @@
-Library for validating that .NET classes are immutable.
+Library for validating that .NET types are immutable.
 
+## Example:
 ```cs
 class MyClass
 {
