@@ -156,8 +156,18 @@ namespace MikValSor.Immutable
 
 		private void EnsureImmutableUncached(Type targetType, bool instance, List<Type> inStack)
 		{
-			if (targetType.IsInterface) throw new TypeIsInterfaceException(targetType);
-			if (targetType.IsArray) throw new TypeIsArrayException(targetType);
+			if (targetType.IsEnum)
+			{
+				return;
+			}
+			if (targetType.IsInterface)
+			{
+				throw new TypeIsInterfaceException(targetType);
+			}
+			if (targetType.IsArray)
+			{
+				throw new TypeIsArrayException(targetType);
+			}
 
 #if NET471
 			if (!IsReadonlyStruct(targetType))
@@ -171,7 +181,10 @@ namespace MikValSor.Immutable
 
 			if (!instance && targetType.IsClass)
 			{
-				if (!targetType.IsSealed) throw new ClassNotSealedException(targetType);
+				if (!targetType.IsSealed)
+				{
+					throw new ClassNotSealedException(targetType);
+				}
 			}
 
 			CheckAllFields(targetType, inStack);
