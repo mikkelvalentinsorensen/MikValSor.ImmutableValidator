@@ -16,7 +16,7 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
     <PackageReleaseNotes>v1.0.3
-- Added .NET Framrwork 4.5 output
+- Added .NET Framework 4.5 output
 - Better commenting.
 
 v1.0.2
