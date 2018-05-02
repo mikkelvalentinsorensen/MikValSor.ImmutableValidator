@@ -53,6 +53,7 @@
     <Compile Include="ImmutableValidatorInterfaceTest.cs" />
     <Compile Include="ImmutableValidatorNullTest.cs" />
     <Compile Include="ImmutableValidatorObjectTest.cs" />
+    <Compile Include="ImmutableValidatorMultiValidateTest.cs" />
     <Compile Include="ImmutableValidatorValuesTypeTest.cs" />
     <Compile Include="ImmutableValidatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
