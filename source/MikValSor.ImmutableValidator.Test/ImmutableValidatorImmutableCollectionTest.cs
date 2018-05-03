@@ -11,7 +11,7 @@ namespace MikValSor.Immutable.Test
 		{
 			//Arrange
 			var source = new char[] { 'A' };
-			var readonlyCollection = new MikValSor.Immutable.ImmutablCollection<char>(source);
+			var readonlyCollection = new MikValSor.Immutable.ImmutableCollection<char>(source);
 
 			//Act
 			source[0] = 'B';
@@ -25,7 +25,7 @@ namespace MikValSor.Immutable.Test
 			//Arrange
 			var validator = new ImmutableValidator();
 			var source = new char[] { 'A' };
-			var target = new MikValSor.Immutable.ImmutablCollection<char>(source);
+			var target = new MikValSor.Immutable.ImmutableCollection<char>(source);
 
 			//Act
 			validator.EnsureImmutable(target);
@@ -40,7 +40,7 @@ namespace MikValSor.Immutable.Test
 		{
 			//Arrange
 			var validator = new ImmutableValidator();
-			System.Type target = typeof(MikValSor.Immutable.ImmutablCollection<char>);
+			System.Type target = typeof(MikValSor.Immutable.ImmutableCollection<char>);
 
 			//Act
 			var actual = validator.IsImmutable(target);
@@ -54,7 +54,7 @@ namespace MikValSor.Immutable.Test
 		{
 			//Arrange
 			var validator = new ImmutableValidator();
-			System.Type target = typeof(MikValSor.Immutable.ImmutablCollection<char[]>);
+			System.Type target = typeof(MikValSor.Immutable.ImmutableCollection<char[]>);
 
 			//Act
 			var actual = validator.IsImmutable(target);

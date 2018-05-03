@@ -177,7 +177,7 @@ namespace MikValSor.Immutable
 
 			if (targetType.IsClass && targetType.BaseType != null)
 			{
-				if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutablCollection`1["))
+				if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1["))
 				{
 					//Exceptions to allow for immuatble collection althoug inner is a safe array called list;
 					return;
