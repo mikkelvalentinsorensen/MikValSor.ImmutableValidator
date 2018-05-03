@@ -31,7 +31,7 @@ namespace MikValSor.Immutable
 			if (target == null) return true;
 			try
 			{
-				EnsureImmutable(target.GetType(), true);
+				EnsureImmutable(target.GetType(), true, false);
 			}
 			catch (NotImmutableException)
 			{
@@ -57,7 +57,7 @@ namespace MikValSor.Immutable
 			if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 			try
 			{
-				EnsureImmutable(targetType, false);
+				EnsureImmutable(targetType, false, false);
 			}
 			catch (NotImmutableException)
 			{
@@ -90,7 +90,7 @@ namespace MikValSor.Immutable
 		public void EnsureImmutable(object target)
 		{
 			if (target == null) return;
-			EnsureImmutable(target.GetType(), true);
+			EnsureImmutable(target.GetType(), true, false);
 		}
 
 		/// <summary>
@@ -120,81 +120,26 @@ namespace MikValSor.Immutable
 		public void EnsureImmutable(Type targetType)
 		{
 			if (targetType == null) throw new ArgumentNullException(nameof(targetType));
-			EnsureImmutable(targetType, false);
+			EnsureImmutable(targetType, false, false);
 		}
 
-		private readonly Dictionary<string, bool> PreviousResults = new Dictionary<string, bool>()
-			{
-				{typeof(int).FullName, true },
-				{typeof(bool).FullName, true },
-				{typeof(byte).FullName, true },
-				{typeof(char).FullName, true },
-				{typeof(decimal).FullName, true },
-				{typeof(double).FullName, true },
-				{typeof(float).FullName, true },
-				{typeof(long).FullName, true },
-				{typeof(sbyte).FullName, true },
-				{typeof(short).FullName, true },
-				{typeof(string).FullName, true },
-				{typeof(uint).FullName, true },
-				{typeof(ulong).FullName, true },
-				{typeof(ushort).FullName, true }
-			};
-		private readonly Dictionary<string, bool> InstancePreviousResults = new Dictionary<string, bool>()
-			{
-				{typeof(int).FullName, true },
-				{typeof(bool).FullName, true },
-				{typeof(byte).FullName, true },
-				{typeof(char).FullName, true },
-				{typeof(decimal).FullName, true },
-				{typeof(double).FullName, true },
-				{typeof(float).FullName, true },
-				{typeof(long).FullName, true },
-				{typeof(sbyte).FullName, true },
-				{typeof(short).FullName, true },
-				{typeof(string).FullName, true },
-				{typeof(uint).FullName, true },
-				{typeof(ulong).FullName, true },
-				{typeof(ushort).FullName, true }
-			};
-		private readonly object InsertionLockObject = new object();
+		private ResultCache ResultCache = new ResultCache();
 
-		private bool TryGetPreviousResult(Type type, bool instance, out bool result)
+		private void EnsureImmutable(Type targetType, bool instance, bool baseType, List<Type> inStack = null)
 		{
-			var results = instance ? InstancePreviousResults : PreviousResults;
-
-			return results.TryGetValue(type.FullName, out result);
-		}
-
-		private void AddResult(Type type, bool instance, bool result)
-		{
-			var results = instance ? InstancePreviousResults : PreviousResults;
-			var name = type.FullName;
-
-			if (results.ContainsKey(name)) return;
-
-			lock (InsertionLockObject)
-			{
-				if (results.ContainsKey(name)) return;
-				results.Add(name, result);
-			}
-		}
-
-		private void EnsureImmutable(Type targetType, bool instance, List<Type> inStack = null)
-		{
-			if (TryGetPreviousResult(targetType, instance, out bool previousResult))
+			if (ResultCache.TryGetResult(targetType, instance, baseType, out bool previousResult))
 			{
 				if (previousResult) return;
 			}
 
 			if (inStack == null) inStack = new List<Type>();
 			inStack.Add(targetType);
-			EnsureImmutableUncached(targetType, instance, inStack);
+			EnsureImmutableUncached(targetType, instance, baseType, inStack);
 
-			AddResult(targetType, instance, true);
+			ResultCache.AddResult(targetType, instance, baseType);
 		}
 
-		private void EnsureImmutableUncached(Type targetType, bool instance, List<Type> inStack)
+		private void EnsureImmutableUncached(Type targetType, bool instance, bool baseType, List<Type> inStack)
 		{
 			if (targetType.IsInterface)
 			{
@@ -214,12 +159,12 @@ namespace MikValSor.Immutable
 			{
 #endif
 			EnsureAllFieldsAreReadonly(targetType);
-				EnsureNoProppertiesHasSetters(targetType);
+			EnsureNoProppertiesHasSetters(targetType);
 #if NET471
 			}
 #endif
 
-			if (!instance && targetType.IsClass)
+			if (!baseType && !instance && targetType.IsClass)
 			{
 				if (!targetType.IsSealed)
 				{
@@ -229,19 +174,29 @@ namespace MikValSor.Immutable
 
 			CheckAllFields(targetType, inStack);
 			CheckAllProperties(targetType, inStack);
+
+			if (targetType.IsClass && targetType.BaseType != null)
+			{
+				if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutablCollection`1["))
+				{
+					//Exceptions to allow for immuatble collection althoug inner is a safe array called list;
+					return;
+				}
+				EnsureImmutable(targetType.BaseType, instance, true, inStack);
+			}
 		}
 
 		private void CheckAllFields(Type targetType, List<Type> inStack)
 		{
 			var fields = GetInstanceFields(targetType);
 			fields = fields.Where((f) => !inStack.Contains(f.FieldType)).ToArray();
-			foreach (var f in fields) EnsureImmutable(f.FieldType, false, inStack);
+			foreach (var f in fields) EnsureImmutable(f.FieldType, false, false, inStack);
 		}
 		private void CheckAllProperties(Type targetType, List<Type> inStack)
 		{
 			var properties = targetType.GetProperties();
 			properties = properties.Where((p) => !inStack.Contains(p.PropertyType)).ToArray();
-			foreach (var p in properties) EnsureImmutable(p.PropertyType, false, inStack);
+			foreach (var p in properties) EnsureImmutable(p.PropertyType, false, false, inStack);
 		}
 
 		private void EnsureAllFieldsAreReadonly(Type targetType)
