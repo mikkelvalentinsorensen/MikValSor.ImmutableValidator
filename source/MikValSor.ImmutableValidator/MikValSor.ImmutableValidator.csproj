@@ -15,7 +15,10 @@
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>v1.0.3
+    <PackageReleaseNotes>v1.0.4
+- Added support for MikValSor.Immutable.ImmutablCollection.
+
+v1.0.3
 - Added .NET Framework 4.5 output
 - Better commenting.
 
@@ -32,7 +35,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
