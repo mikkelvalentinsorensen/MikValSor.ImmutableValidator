@@ -15,7 +15,10 @@
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>v1.0.5
+    <PackageReleaseNotes>v1.0.6
+- Upgraded to allow for new version of ImmutableCollection and faster execution.
+
+v1.0.5
 - Fixed MikValSor.Immutable.ImmutableCollection instance validation bug.
 
 v1.0.4
@@ -38,7 +41,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>

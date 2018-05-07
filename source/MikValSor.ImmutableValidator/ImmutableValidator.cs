@@ -177,11 +177,6 @@ namespace MikValSor.Immutable
 
 			if (targetType.IsClass && targetType.BaseType != null)
 			{
-				if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1["))
-				{
-					//Exceptions to allow for immuatble collection althoug inner is a safe array called list;
-					return;
-				}
 				EnsureImmutable(targetType.BaseType, instance, true, inStack);
 			}
 		}
@@ -190,7 +185,26 @@ namespace MikValSor.Immutable
 		{
 			var fields = GetInstanceFields(targetType);
 			fields = fields.Where((f) => !inStack.Contains(f.FieldType)).ToArray();
-			foreach (var f in fields) EnsureImmutable(f.FieldType, false, false, inStack);
+			foreach (var f in fields)
+			{
+				try
+				{
+					EnsureImmutable(f.FieldType, false, false, inStack);
+				}
+				catch (TypeIsArrayException)
+				{
+					//Exceptions to allow for immuatble collection althoug inner is a safe array called list;
+					if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && f.Name == "m_array")
+					{
+						var elementType = f.FieldType.GetElementType();
+						EnsureImmutable(elementType, false, false, inStack);
+					}
+					else
+					{
+						throw;
+					}
+				}
+			}
 		}
 		private void CheckAllProperties(Type targetType, List<Type> inStack)
 		{
