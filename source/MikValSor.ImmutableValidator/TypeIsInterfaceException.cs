@@ -7,9 +7,11 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public sealed class TypeIsInterfaceException : NotImmutableException
 	{
+		public readonly Type Type;
+
 		internal TypeIsInterfaceException(Type type) : base($"Type: {type.FullName}")
 		{
-			Data.Add("Type", type);
+			Type = type;
 		}
 	}
 }

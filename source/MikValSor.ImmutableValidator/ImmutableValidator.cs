@@ -20,24 +20,23 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		Checks if target object is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted object for immutable validation.
 		/// </param>
 		/// <returns>
 		///		Returns True if object is immutable.
 		/// </returns>
-		public bool IsImmutable(object target)
+		public bool IsImmutable(object instance)
 		{
-			if (target == null) return true;
 			try
 			{
-				EnsureImmutable(target.GetType(), true, false);
+				Validate(instance);
+				return true;
 			}
 			catch (NotImmutableException)
 			{
 				return false;
 			}
-			return true;
 		}
 
 		/// <summary>
@@ -52,9 +51,18 @@ namespace MikValSor.Immutable
 		/// <exception cref="ArgumentNullException">
 		///		Throws System.ArgumentNullException if targetType is null.
 		/// </exception>
-		public bool IsImmutable(Type targetType)
+		public bool IsImmutable(Type type)
 		{
-			return new TypeImmutableValidator().IsImmutable(targetType);
+			if (type == null) throw new ArgumentNullException(nameof(type));
+			try
+			{
+				var result = Validate(type);
+				return result == TypeImmutableValidationResult.IsImmutable;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -78,10 +86,10 @@ namespace MikValSor.Immutable
 		/// <exception cref="TypeIsInterfaceException">
 		///		Throws MikValSor.Immutable.TypeIsInterfaceException if target or member of target is an interface.
 		/// </exception>
+		#warning documenteded exceptions needs update
 		public void EnsureImmutable(object target)
 		{
-			if (target == null) return;
-			EnsureImmutable(target.GetType(), true, false);
+			Validate(target);
 		}
 
 		/// <summary>
@@ -108,111 +116,13 @@ namespace MikValSor.Immutable
 		/// <exception cref="TypeIsInterfaceException">
 		///		Throws MikValSor.Immutable.TypeIsInterfaceException if targetType or member of targetType is an interface.
 		/// </exception>
-		public void EnsureImmutable(Type targetType)
+		#warning documenteded exceptions needs update
+		public void EnsureImmutable(Type type)
 		{
-			new TypeImmutableValidator().EnsureImmutable(targetType);
-		}
-
-		private ResultCache ResultCache = new ResultCache();
-
-		private void EnsureImmutable(Type targetType, bool instance, bool baseType, List<Type> inStack = null)
-		{
-			if (ResultCache.TryGetResult(targetType, instance, baseType, out bool previousResult))
+			var result = Validate(type);
+			if (result == TypeImmutableValidationResult.MightBeImmutable)
 			{
-				if (previousResult) return;
-			}
-
-			if (inStack == null) inStack = new List<Type>();
-			inStack.Add(targetType);
-			EnsureImmutableUncached(targetType, instance, baseType, inStack);
-
-			ResultCache.AddResult(targetType, instance, baseType);
-		}
-
-		private void EnsureImmutableUncached(Type targetType, bool instance, bool baseType, List<Type> inStack)
-		{
-			if (targetType.IsInterface)
-			{
-				throw new TypeIsInterfaceException(targetType);
-			}
-			if (targetType.IsArray)
-			{
-				throw new TypeIsArrayException(targetType);
-			}
-			if (targetType.IsEnum)
-			{
-				return;
-			}
-
-#if NET471
-			if (!IsReadonlyStruct(targetType))
-			{
-#endif
-			EnsureAllFieldsAreReadonly(targetType);
-			EnsureNoProppertiesHasSetters(targetType);
-#if NET471
-			}
-#endif
-
-			if (!baseType && !instance && targetType.IsClass)
-			{
-				if (!targetType.IsSealed)
-				{
-					throw new ClassNotSealedException(targetType);
-				}
-			}
-
-			CheckAllFields(targetType, inStack);
-			CheckAllProperties(targetType, inStack);
-
-			if (targetType.IsClass && targetType.BaseType != null)
-			{
-				EnsureImmutable(targetType.BaseType, instance, true, inStack);
-			}
-		}
-
-		private void CheckAllFields(Type targetType, List<Type> inStack)
-		{
-			var fields = GetInstanceFields(targetType);
-			fields = fields.Where((f) => !inStack.Contains(f.FieldType)).ToArray();
-			foreach (var f in fields)
-			{
-				try
-				{
-					EnsureImmutable(f.FieldType, false, false, inStack);
-				}
-				catch (TypeIsArrayException)
-				{
-					//Exceptions to allow for immuatble collection althoug inner is a safe array called list;
-					if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && f.Name == "m_array")
-					{
-						var elementType = f.FieldType.GetElementType();
-						EnsureImmutable(elementType, false, false, inStack);
-					}
-					else
-					{
-						throw;
-					}
-				}
-			}
-		}
-		private void CheckAllProperties(Type targetType, List<Type> inStack)
-		{
-			var properties = targetType.GetProperties();
-			properties = properties.Where((p) => !inStack.Contains(p.PropertyType)).ToArray();
-			foreach (var p in properties) EnsureImmutable(p.PropertyType, false, false, inStack);
-		}
-
-		private void EnsureAllFieldsAreReadonly(Type targetType)
-		{
-			var fields = GetInstanceFields(targetType).ToArray();
-
-			foreach (var field in fields)
-			{
-				if (!field.IsInitOnly)
-				{
-					throw new FieldIsNotInitOnlyException(targetType, field);
-				}
+				throw new TypeDoesNotGuaranteeImmutabilityException(type);
 			}
 		}
 
@@ -225,281 +135,266 @@ namespace MikValSor.Immutable
 			foreach (var f in publicFields) yield return f;
 		}
 
-		private void EnsureNoProppertiesHasSetters(Type targetType)
+		private void Validate(object target)
 		{
-			var properties = targetType.GetProperties();
-
-			foreach ( var property in properties)
-			{
-				if (property.CanWrite)
-				{
-					throw new PropertyCanWriteException(targetType, property);
-				}
-			}
+			Validate(target, new List<object>());
 		}
 
-#if NET471
-		private bool IsReadonlyStruct(Type targetType)
+		private void Validate(object target, List<object> stack)
 		{
-			if (targetType.IsValueType)
+			//If object has already been checked, or is in the process of being checked skip it.
+			if (stack.Contains(target))
 			{
-				return IsComplierMarkedReadonly(targetType);
+				return;
 			}
-			return false;
-		}
+			stack.Add(target);
 
-		private bool IsComplierMarkedReadonly(Type targetType)
-		{
-			var customAttributes = targetType.GetCustomAttributes(false);
-
-			return customAttributes.Any(a => a is System.Runtime.CompilerServices.IsReadOnlyAttribute);
-		}
-#endif
-		private class InstanceImmutableValidator
-		{
-			public bool Validate(object target)
+			//Rule 1: null in considered immutable.
+			if (target == null)
 			{
-				return Validate(target, new List<object>());
+				return;
 			}
 
-			private bool Validate(object target, List<object> stack)
+			var targetType = target.GetType();
+
+			//Rule 2: If type of instance is considered immutable, instance will always be immutable.
+			try
 			{
-				//If object has already been checked, or is in the process of being checked skip it.
-				if (stack.Contains(target))
+				EnsureImmutable(targetType);
+				return;
+			}
+			catch (TypeDoesNotGuaranteeImmutabilityException)
+			{
+				//Continue Validation
+			}
+
+			//while for Rule5
+			while (targetType != null)
+			{
+
+				//Rule 3: All fields value of an instance must be immutable according to instance immutablilty rules.
+				foreach (var fieldInfo in GetInstanceFields(targetType))
 				{
-					return true;
-				}
-				stack.Add(target);
-
-				//Rule 1: null in considered immutable.
-				if (target == null)
-				{
-					return true;
-				}
-
-				var targetType = target.GetType();
-
-				//Rule 2: If type of instance is considered immutable, instance will always be immutable.
-				if (new TypeImmutableValidator().IsImmutable(targetType))
-				{
-					return true;
-				}
-
-				//while for Rule5
-				while (targetType == null)
-				{
-
-					//Rule 3: All fields value of an instance must be immutable according to instance immutablilty rules.
-					foreach (var fieldInfo in ImmutableValidator.GetInstanceFields(targetType))
+					object fieldValue;
+					try
 					{
-						object fieldValue;
-						try
+						fieldValue = fieldInfo.GetValue(target);
+					}
+					catch (Exception e)
+					{
+						throw new UnableToGetFieldValueException(target, fieldInfo, e);
+					}
+					try
+					{
+						Validate(fieldValue, stack);
+					}
+					catch (TypeIsArrayException t)
+					{
+						//Rule 3a: Exception to allow collections we allow for a single inner array in MikValSor.Immutable.ImmutableCollection`1.
+						if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && fieldInfo.Name == "m_array")
 						{
-							fieldValue = fieldInfo.GetValue(target);
+							//Test all array elements;
+							foreach (object arrayValue in (fieldValue as Array))
+							{
+								Validate(arrayValue, stack);
+							}
 						}
-						catch (Exception e)
+						else
 						{
-							throw new UnableToGetFieldValueException(target, fieldInfo, e);
-						}
-						try
-						{
-							var fieldResult = Validate(fieldValue, stack);
-							if (!fieldResult) return false;
-						}
-						catch (NotImmutableException n)
-						{
-							throw new InstanceFieldValueNotImmutableException(target, fieldInfo, fieldValue, n);
+							throw new InstanceFieldValueNotImmutableException(target, fieldInfo, fieldValue, t);
 						}
 					}
-
-					//Rule 4: All properties value of an instance must be immutable according to instance immutablilty rules.
-					foreach (var propertyInfo in targetType.GetProperties())
+					catch (NotImmutableException n)
 					{
-						object propertyValue;
+						throw new InstanceFieldValueNotImmutableException(target, fieldInfo, fieldValue, n);
+					}
+				}
 
-						try
-						{
-							propertyValue = propertyInfo.GetValue(target);
+				//Rule 4: All properties value of an instance must be immutable according to instance immutablilty rules.
+				foreach (var propertyInfo in targetType.GetProperties())
+				{
+					object propertyValue;
 
-						}
-						catch (Exception e)
+					try
+					{
+						propertyValue = propertyInfo.GetValue(target);
+					}
+					catch (TargetParameterCountException t)
+					{
+						//Rule 4a: Exception get_Item methods are validated.
+						if (propertyInfo.GetMethod.Name == "get_Item")
 						{
-							throw new UnableToGetPropertyValueException(target, propertyInfo, e);
+							continue;
 						}
-						try
+						else
 						{
-							var propertyResult = Validate(propertyValue, stack);
-							if (!propertyResult) return false;
-						}
-						catch (NotImmutableException n)
-						{
-							throw new InstancePropertyValueNotImmutableException(target, propertyInfo, propertyValue, n);
+							throw new UnableToGetPropertyValueException(target, propertyInfo, t);
 						}
 					}
-
-					//Rule 5: Rules 3 & 4 should be validated on all inhereted class.
-					targetType = targetType.BaseType;
+					catch (Exception e)
+					{
+						throw new UnableToGetPropertyValueException(target, propertyInfo, e);
+					}
+					try
+					{
+						Validate(propertyValue, stack);
+					}
+					catch (NotImmutableException n)
+					{
+						throw new InstancePropertyValueNotImmutableException(target, propertyInfo, propertyValue, n);
+					}
 				}
 
-				return true;
+				//Rule 5: Rules 3 & 4 should be validated on all inhereted class.
+				targetType = targetType.BaseType;
 			}
+
+			return;
 		}
 
-		private class TypeImmutableValidator
+		private TypeImmutableValidationResult Validate(Type targetType)
 		{
-			public void EnsureImmutable(Type type)
+			return Validate(targetType, false, new List<string>());
+		}
+
+		private TypeImmutableValidationResult Validate(Type type, bool isBaseType, List<string> stack)
+		{
+			//If type has already been checked, or is in the process of being checked skip it.
+			var stackName = $"{isBaseType}|{type.FullName}";
+			if (stack.Contains(stackName))
 			{
-				var result = Validate(type);
-				if (result == TypeImmutableValidationResult.MightBeImmutable)
+				return TypeImmutableValidationResult.IsImmutable;
+			}
+			stack.Add(stackName);
+
+			//Rule 0: Following types are considered immutable: bool, byte, char, decimal, double, float, int, long, sbyte, short,	string,	uint, ulong and ushort
+			if (TypesConsideredImmutable.ContainsKey(type))
+			{
+				return TypeImmutableValidationResult.IsImmutable;
+			}
+
+			//Rule 1: Enums are immutable.
+			if (type.IsEnum)
+			{
+				return TypeImmutableValidationResult.IsImmutable;
+			}
+
+			//Rule 2: Arrays are muteable.
+			if (type.IsArray)
+			{
+				throw new TypeIsArrayException(type);
+			}
+
+			var result = TypeImmutableValidationResult.IsImmutable;
+
+			//Rule 3: Instances of interfaces can be both muttable and immutable.
+			if (type.IsInterface)
+			{
+				result = TypeImmutableValidationResult.MightBeImmutable;
+			}
+
+
+			if (type.IsClass)
+			{
+				//Rule 4: Class types must be sealed to ensure immutability on type level. 
+				if (!type.IsSealed)
 				{
-					throw new TypeDoesNotGuaranteeImmutabilityException(type);
+					if (!isBaseType)
+					{
+						result = TypeImmutableValidationResult.MightBeImmutable;
+					}
+				}
+
+				//Rule 5: Class base types must be immutable for type to be immutable.
+				if (type.BaseType != null)
+				{
+					try
+					{
+						TypeImmutableValidationResult baseTypeResult = Validate(type.BaseType, true, stack);
+						if (baseTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+					}
+					catch (NotImmutableException n)
+					{
+						throw new BaseClassNotImmutableException(type.BaseType, type, n);
+					}
 				}
 			}
 
-			public bool IsImmutable(Type type)
+			//Interfaces, Struct and Class fields
+			foreach (var fieldInfo in GetInstanceFields(type))
 			{
-				if (type == null) throw new ArgumentNullException(nameof(type));
+				//Rule 6: Interfaces, structs and classes fields must be readonly.
+				if (!fieldInfo.IsInitOnly)
+				{
+					throw new FieldIsNotInitOnlyException(type, fieldInfo);
+				}
+
+				//Rule 7: Interfaces, structs and classes fields must be immutable.
 				try
 				{
-					var result = Validate(type);
-					return result == TypeImmutableValidationResult.IsImmutable;
+					var fieldTypeResult = Validate(fieldInfo.FieldType, false, stack);
+					if (fieldTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
 				}
-				catch (Exception)
+				catch (TypeIsArrayException t)
 				{
-					return false;
+					//Rule 7a: Exception to allow collections we allow for a single inner array in MikValSor.Immutable.ImmutableCollection`1.
+					if (type.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && fieldInfo.Name == "m_array")
+					{
+						//Test element type;
+						var arrayElementTypeResult = Validate(fieldInfo.FieldType.GetElementType(), false, stack);
+						if (arrayElementTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+					}
+					else
+					{
+						throw new TypeFieldNotImmutableException(type, fieldInfo, t);
+					}
+				}
+				catch (NotImmutableException n)
+				{
+					throw new TypeFieldNotImmutableException(type, fieldInfo, n);
 				}
 			}
 
-			private TypeImmutableValidationResult Validate(Type targetType)
+			//Interfaces, Struct and Class fields
+			foreach (var propertyInfo in type.GetProperties())
 			{
-				return Validate(targetType, false, new List<string>());
+				//Rule 8: Interfaces, structs and classes properties cannot have setters.
+				if (propertyInfo.CanWrite)
+				{
+					throw new PropertyCanWriteException(type, propertyInfo);
+				}
+
+				//Rule 9: Interfaces, structs and classes properties must be immutable.
+				try
+				{
+					var propertyTypeResult = Validate(propertyInfo.PropertyType, false, stack);
+					if (propertyTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+				}
+				catch (NotImmutableException n)
+				{
+					throw new TypePropertyNotImmutableException(type, propertyInfo, n);
+				}
 			}
 
-			private TypeImmutableValidationResult Validate(Type type, bool isBaseType, List<string> stack)
-			{
-				//If type has already been checked, or is in the process of being checked skip it.
-				var stackName = $"{isBaseType}|{type.FullName}";
-				if (stack.Contains(stackName))
-				{
-					return TypeImmutableValidationResult.IsImmutable;
-				}
-				stack.Add(stackName);
-
-				//Rule 0: Following types are considered immutable: bool, byte, char, decimal, double, float, int, long, sbyte, short,	string,	uint, ulong and ushort
-				if (TypesConsideredImmutable.ContainsKey(type))
-				{
-					return TypeImmutableValidationResult.IsImmutable;
-				}
-
-				//Rule 1: Enums are Immutable.
-				if (type.IsEnum)
-				{
-					return TypeImmutableValidationResult.IsImmutable;
-				}
-
-				//Rule 2: Arrays are muteable.
-				if (type.IsArray)
-				{
-					throw new TypeIsArrayException(type);
-				}
-
-				var result = TypeImmutableValidationResult.IsImmutable;
-
-				//Rule 3: Instances of interfaces can be both muttable and immutable.
-				if (type.IsInterface)
-				{
-					result = TypeImmutableValidationResult.MightBeImmutable;
-				}
-
-
-				if (type.IsClass)
-				{
-					//Rule 4: Class types must be sealed to ensure immutability on type level. 
-					if (!type.IsSealed)
-					{
-						if (!isBaseType)
-						{
-							result = TypeImmutableValidationResult.MightBeImmutable;
-						}
-					}
-
-					//Rule 5: Class base types must be immutable for type to be immutable.
-					if (type.BaseType != null)
-					{
-						try
-						{
-							TypeImmutableValidationResult baseTypeResult = Validate(type.BaseType, true, stack);
-							if (baseTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
-						}
-						catch (NotImmutableException n)
-						{
-							throw new BaseClassNotImmutableException(type.BaseType, type, n);
-						}
-					}
-				}
-
-				//Interfaces, Struct and Class fields
-				foreach (var fieldInfo in ImmutableValidator.GetInstanceFields(type))
-				{
-					//Rule 6: Interfaces, structs and classes fields must be readonly.
-					if (!fieldInfo.IsInitOnly)
-					{
-						throw new FieldIsNotInitOnlyException(type, fieldInfo);
-					}
-
-					//Rule 7: Interfaces, structs and classes fields must be immutable.
-					try
-					{
-						var fieldTypeResult = Validate(fieldInfo.FieldType, false, stack);
-						if (fieldTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
-					}
-					catch (NotImmutableException n)
-					{
-						throw new TypeFieldNotImmutableException(type, fieldInfo, n);
-					}
-				}
-
-				//Interfaces, Struct and Class fields
-				foreach (var propertyInfo in type.GetProperties())
-				{
-					//Rule 8: Interfaces, structs and classes properties cannot have setters.
-					if (propertyInfo.CanWrite)
-					{
-						throw new PropertyCanWriteException(type, propertyInfo);
-					}
-
-					//Rule 9: Interfaces, structs and classes properties must be immutable.
-					try
-					{
-						var propertyTypeResult = Validate(propertyInfo.PropertyType, false, stack);
-						if (propertyTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
-					}
-					catch (NotImmutableException n)
-					{
-						throw new TypePropertyNotImmutableException(type, propertyInfo, n);
-					}
-				}
-
-				return result;
-			}
-
-			private readonly Dictionary<Type, bool> TypesConsideredImmutable = new Dictionary<Type, bool>()
-			{
-				{typeof(int), true },
-				{typeof(bool), true },
-				{typeof(byte), true },
-				{typeof(char), true },
-				{typeof(decimal), true },
-				{typeof(double), true },
-				{typeof(float), true },
-				{typeof(long), true },
-				{typeof(sbyte), true },
-				{typeof(short), true },
-				{typeof(string), true },
-				{typeof(uint), true },
-				{typeof(ulong), true },
-				{typeof(ushort), true }
-			};
+			return result;
 		}
+
+		private readonly Dictionary<Type, bool> TypesConsideredImmutable = new Dictionary<Type, bool>()
+		{
+			{typeof(int), true },
+			{typeof(bool), true },
+			{typeof(byte), true },
+			{typeof(char), true },
+			{typeof(decimal), true },
+			{typeof(double), true },
+			{typeof(float), true },
+			{typeof(long), true },
+			{typeof(sbyte), true },
+			{typeof(short), true },
+			{typeof(string), true },
+			{typeof(uint), true },
+			{typeof(ulong), true },
+			{typeof(ushort), true }
+		};
 	}
 }

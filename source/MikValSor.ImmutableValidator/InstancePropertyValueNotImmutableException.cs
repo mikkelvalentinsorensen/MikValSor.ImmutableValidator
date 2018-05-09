@@ -1,39 +1,21 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.Serialization;
 
 namespace MikValSor.Immutable
 {
-	[Serializable]
-	internal class InstancePropertyValueNotImmutableException : Exception
+	internal class InstancePropertyValueNotImmutableException : NotImplementedException
 	{
-		private object target;
-		private PropertyInfo propertyInfo;
-		private object propertyValue;
-		private NotImmutableException n;
+		public object Instance;
+		public PropertyInfo PropertyInfo;
+		public object PropertyValue;
 
-		public InstancePropertyValueNotImmutableException()
-		{
-		}
 
-		public InstancePropertyValueNotImmutableException(string message) : base(message)
+#warning fix message
+		internal InstancePropertyValueNotImmutableException(object instance, PropertyInfo propertyInfo, object propertyValue, NotImmutableException n) : base("", n)
 		{
-		}
-
-		public InstancePropertyValueNotImmutableException(string message, Exception innerException) : base(message, innerException)
-		{
-		}
-
-		public InstancePropertyValueNotImmutableException(object target, PropertyInfo propertyInfo, object propertyValue, NotImmutableException n)
-		{
-			this.target = target;
-			this.propertyInfo = propertyInfo;
-			this.propertyValue = propertyValue;
-			this.n = n;
-		}
-
-		protected InstancePropertyValueNotImmutableException(SerializationInfo info, StreamingContext context) : base(info, context)
-		{
+			Instance = instance;
+			PropertyInfo = propertyInfo;
+			PropertyValue = propertyValue;
 		}
 	}
 }

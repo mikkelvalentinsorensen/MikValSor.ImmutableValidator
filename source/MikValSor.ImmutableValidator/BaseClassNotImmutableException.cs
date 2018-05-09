@@ -6,7 +6,8 @@ namespace MikValSor.Immutable
 	{
 		public readonly Type BaseType;
 		public readonly Type DerivedType;
-		public BaseClassNotImmutableException(Type baseType, Type derivedType, NotImmutableException innerException) : base($"Type {derivedType.FullName} because base inherited base class {baseType.FullName} was not immutable.", innerException)
+
+		internal BaseClassNotImmutableException(Type baseType, Type derivedType, NotImmutableException innerException) : base($"Type {derivedType.FullName} because base inherited base class {baseType.FullName} was not immutable.", innerException)
 		{
 			BaseType = baseType;
 			DerivedType = derivedType;

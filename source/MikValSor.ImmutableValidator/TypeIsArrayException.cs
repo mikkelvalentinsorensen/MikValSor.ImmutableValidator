@@ -7,9 +7,11 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public sealed class TypeIsArrayException : NotImmutableException
 	{
+		public readonly Type Type;
+
 		internal TypeIsArrayException(Type type) : base($"Type: {type.FullName}")
 		{
-			Data.Add("Type", type);
+			Type = type;
 		}
 	}
 }

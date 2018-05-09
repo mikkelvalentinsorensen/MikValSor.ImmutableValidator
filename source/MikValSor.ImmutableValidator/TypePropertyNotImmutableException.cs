@@ -5,8 +5,13 @@ namespace MikValSor.Immutable
 {
     public class TypePropertyNotImmutableException : NotImmutableException
 	{
-		public TypePropertyNotImmutableException(Type type, PropertyInfo fieldInfo, NotImmutableException innerException) : base($"Property: {fieldInfo.Name}, Type: {type.FullName}", innerException)
+		public readonly Type Type;
+		public readonly PropertyInfo PropertyInfo;
+
+		internal TypePropertyNotImmutableException(Type type, PropertyInfo propertyInfo, NotImmutableException innerException) : base($"Property: {propertyInfo.Name}, Type: {type.FullName}", innerException)
 		{
+			Type = type;
+			PropertyInfo = propertyInfo;
 		}
 	}
 }

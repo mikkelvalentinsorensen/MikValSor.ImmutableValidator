@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace MikValSor.Immutable
 {
     public class UnableToGetFieldValueException : NotImmutableException
 	{
+		public readonly object Instance;
+		public readonly FieldInfo FieldInfo;
+
 #warning fix message
-		public UnableToGetFieldValueException(object obj, FieldInfo fieldInfo, Exception innerException) : base("", innerException)
+		internal UnableToGetFieldValueException(object instance, FieldInfo fieldInfo, Exception innerException) : base("", innerException)
 		{
+			Instance = instance;
+			FieldInfo = fieldInfo;
 		}
 	}
 }
