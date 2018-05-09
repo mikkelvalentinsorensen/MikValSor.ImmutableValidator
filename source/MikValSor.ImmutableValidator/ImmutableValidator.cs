@@ -226,7 +226,7 @@ namespace MikValSor.Immutable
 			}
 		}
 
-		private IEnumerable<FieldInfo> GetInstanceFields(Type targetType)
+		private static IEnumerable<FieldInfo> GetInstanceFields(Type targetType)
 		{
 			var privateFields = targetType.GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 			foreach (var f in privateFields) yield return f;
@@ -265,5 +265,74 @@ namespace MikValSor.Immutable
 			return customAttributes.Any(a => a is System.Runtime.CompilerServices.IsReadOnlyAttribute);
 		}
 #endif
+		private class TypeImmutableValidator
+		{
+			public TypeImmutableValidationResult Validate(Type targetType)
+			{
+				return Validate(targetType, false, new List<Type>());
+			}
+			private TypeImmutableValidationResult Validate(Type targetType, bool isBaseType, List<Type> stack)
+			{
+				stack.Add(targetType);
+				
+				if (targetType.IsInterface)
+				{
+					return TypeImmutableValidationResult.MightBeImmutable;
+				}
+				if (targetType.IsArray)
+				{
+					return TypeImmutableValidationResult.IsNotImmutable;
+				}
+				if (targetType.IsEnum)
+				{
+					return TypeImmutableValidationResult.IsImmutable;
+				}
+
+				if (targetType.IsClass)
+				{
+					if (!isBaseType)
+					{
+						if (!targetType.IsSealed)
+						{
+							return TypeImmutableValidationResult.MightBeImmutable;
+						}
+					}
+					if (targetType.BaseType != null)
+					{
+						var baseTypeResult = Validate(targetType, true, stack);
+						if (baseTypeResult != TypeImmutableValidationResult.IsImmutable)
+						{
+							return baseTypeResult;
+						}
+					}
+				}
+
+				foreach (var fieldInfo in ImmutableValidator.GetInstanceFields(targetType))
+				{
+					if (!fieldInfo.IsInitOnly)
+					{
+						return TypeImmutableValidationResult.IsNotImmutable;
+					}
+				}
+
+#if NET471
+			if (!IsReadonlyStruct(targetType))
+			{
+#endif
+				EnsureAllFieldsAreReadonly(targetType);
+				EnsureNoProppertiesHasSetters(targetType);
+#if NET471
+			}
+#endif
+
+				CheckAllFields(targetType, inStack);
+				CheckAllProperties(targetType, inStack);
+
+				if (targetType.IsClass && targetType.BaseType != null)
+				{
+					EnsureImmutable(targetType.BaseType, instance, true, inStack);
+				}
+			}
+		}
 	}
 }

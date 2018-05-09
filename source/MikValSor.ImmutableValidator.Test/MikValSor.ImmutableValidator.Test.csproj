@@ -65,6 +65,7 @@
     <Compile Include="ImmutableValidatorReadOnlyCollectionTest.cs" />
     <Compile Include="ImmutableValidatorValuesTypeTest.cs" />
     <Compile Include="ImmutableValidatorTest.cs" />
+    <Compile Include="ImmutableValidatoyReuseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
