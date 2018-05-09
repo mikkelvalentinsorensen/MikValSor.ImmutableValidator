@@ -269,69 +269,112 @@ namespace MikValSor.Immutable
 		{
 			public TypeImmutableValidationResult Validate(Type targetType)
 			{
-				return Validate(targetType, false, new List<Type>());
+				return Validate(targetType, false, new List<string>());
 			}
-			private TypeImmutableValidationResult Validate(Type targetType, bool isBaseType, List<Type> stack)
+
+			private TypeImmutableValidationResult Validate(Type targetType, bool isBaseType, List<string> stack)
 			{
-				stack.Add(targetType);
-				
-				if (targetType.IsInterface)
+				//ToDo: There should be a stack for both outer and base classes.
+				//ToDo: Should not return MightBeImmutable before done.
+
+				//if type has already been checked, or is in the process of being checked skip it.
+				var stackName = $"{isBaseType}|{targetType.FullName}";
+				if (stack.Contains(stackName))
 				{
-					return TypeImmutableValidationResult.MightBeImmutable;
+					return TypeImmutableValidationResult.IsImmutable;
 				}
+				stack.Add(stackName);
+				
+				//Rule 1: Arrays are muteable.
 				if (targetType.IsArray)
 				{
-					return TypeImmutableValidationResult.IsNotImmutable;
+					throw new TypeIsArrayException(targetType);
 				}
+
+				//Rule 2: Enums are Immutable.
 				if (targetType.IsEnum)
 				{
 					return TypeImmutableValidationResult.IsImmutable;
 				}
 
+				var result = TypeImmutableValidationResult.IsImmutable;
+
+				//Rule 3: Instances of interfaces can be both muttable and immutable.
+				if (targetType.IsInterface)
+				{
+					result = TypeImmutableValidationResult.MightBeImmutable;
+				}
+
+
 				if (targetType.IsClass)
 				{
-					if (!isBaseType)
+					//Rule 4: Class types must be sealed to ensure immutability on type level. 
+					if (!targetType.IsSealed)
 					{
-						if (!targetType.IsSealed)
+						if (!isBaseType)
 						{
-							return TypeImmutableValidationResult.MightBeImmutable;
+							result = TypeImmutableValidationResult.MightBeImmutable;
 						}
 					}
+
+					//Rule 5: Class base types must be immutable for type to be immutable.
 					if (targetType.BaseType != null)
 					{
-						var baseTypeResult = Validate(targetType, true, stack);
-						if (baseTypeResult != TypeImmutableValidationResult.IsImmutable)
+						try
 						{
-							return baseTypeResult;
+							TypeImmutableValidationResult baseTypeResult = Validate(targetType, true, stack);
+							if (baseTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+						}
+						catch (NotImmutableException n)
+						{
+							throw new BaseClassNotImmutableException(targetType.BaseType, targetType, n);
 						}
 					}
 				}
 
+				//Interfaces, Struct and Class fields
 				foreach (var fieldInfo in ImmutableValidator.GetInstanceFields(targetType))
 				{
+					//Rule 6: Interfaces, structs and classes fields must be readonly.
 					if (!fieldInfo.IsInitOnly)
 					{
-						return TypeImmutableValidationResult.IsNotImmutable;
+						throw new FieldIsNotInitOnlyException(targetType, fieldInfo);
+					}
+
+					//Rule 7: Interfaces, structs and classes fields must be immutable.
+					try
+					{
+						var fieldTypeResult = Validate(fieldInfo.FieldType, false, stack);
+						if (fieldTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+					}
+					catch (NotImmutableException n)
+					{
+						throw new ClassFieldNotImmutableException(targetType, fieldInfo, n);
 					}
 				}
 
-#if NET471
-			if (!IsReadonlyStruct(targetType))
-			{
-#endif
-				EnsureAllFieldsAreReadonly(targetType);
-				EnsureNoProppertiesHasSetters(targetType);
-#if NET471
-			}
-#endif
-
-				CheckAllFields(targetType, inStack);
-				CheckAllProperties(targetType, inStack);
-
-				if (targetType.IsClass && targetType.BaseType != null)
+				//Interfaces, Struct and Class fields
+				foreach (var propertyInfo in targetType.GetProperties())
 				{
-					EnsureImmutable(targetType.BaseType, instance, true, inStack);
+					//Rule 8: Interfaces, structs and classes properties cannot have setters.
+					if (propertyInfo.CanWrite)
+					{
+						throw new PropertyCanWriteException(targetType, propertyInfo);
+					}
+
+					//Rule 9: Interfaces, structs and classes properties must be immutable.
+					try
+					{
+						var propertyTypeResult = Validate(propertyInfo.PropertyType, false, stack);
+						if (propertyTypeResult == TypeImmutableValidationResult.MightBeImmutable) result = TypeImmutableValidationResult.MightBeImmutable;
+					}
+					catch (NotImmutableException n)
+					{
+						throw new ClassPropertyNotImmutableException(targetType, propertyInfo, n);
+					}
 				}
+
+				return result;
 			}
 		}
 	}

@@ -10,5 +10,9 @@ namespace MikValSor.Immutable
 		internal NotImmutableException(string message) : base(message)
 		{
 		}
+
+		internal NotImmutableException(string message, Exception innerException) : base(message, innerException)
+		{
+		}
 	}
 }
