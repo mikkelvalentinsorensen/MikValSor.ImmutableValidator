@@ -8,6 +8,9 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public sealed class FieldIsNotInitOnlyException : NotImmutableException
 	{
+		public readonly Type Type;
+		public readonly FieldInfo FieldInfo;
+
 		/// <summary>
 		///		Constructs exception for cases where fields are always setable.
 		/// </summary>
@@ -19,8 +22,8 @@ namespace MikValSor.Immutable
 		/// </param>
 		internal FieldIsNotInitOnlyException(Type type, FieldInfo fieldInfo) : base($"Field: {fieldInfo.Name}, Type: {type.FullName}")
 		{
-			Data.Add("Type", type);
-			Data.Add("FieldInfo", fieldInfo);
+			Type = type;
+			FieldInfo = fieldInfo;
 		}
 	}
 }

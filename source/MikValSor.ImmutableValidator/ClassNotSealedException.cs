@@ -7,6 +7,8 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public sealed class ClassNotSealedException : NotImmutableException
 	{
+		public readonly Type Type;
+
 		/// <summary>
 		///		Constructs class not sealed exception for given type.
 		/// </summary>
@@ -15,7 +17,7 @@ namespace MikValSor.Immutable
 		/// </param>
 		internal ClassNotSealedException(Type type) : base($"Type: {type.FullName}")
 		{
-			Data.Add("Type", type);
+			Type = type;
 		}
 	}
 }
