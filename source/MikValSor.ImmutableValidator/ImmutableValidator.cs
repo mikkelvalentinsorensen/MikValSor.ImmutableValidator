@@ -30,7 +30,7 @@ namespace MikValSor.Immutable
 		{
 			try
 			{
-				Validate(instance);
+				Validate(instance, new List<object>());
 				return true;
 			}
 			catch (NotImmutableException)
@@ -42,7 +42,7 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		Checks if type garenties object is immutable. 
 		/// </summary>
-		/// <param name="targetType">
+		/// <param name="type">
 		///		Targeted type for immutable validation.
 		/// </param>
 		/// <returns>
@@ -56,7 +56,7 @@ namespace MikValSor.Immutable
 			if (type == null) throw new ArgumentNullException(nameof(type));
 			try
 			{
-				var result = Validate(type);
+				var result = Validate(type, false, new List<string>());
 				return result == TypeImmutableValidationResult.IsImmutable;
 			}
 			catch (Exception)
@@ -71,55 +71,71 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted object for immutable validation.
 		/// </param>
-		/// <exception cref="ClassNotSealedException">
-		///		Throws MikValSor.Immutable.ClassNotSealedException if target or member of target should have been sealed.
-		/// </exception>
 		/// <exception cref="FieldIsNotInitOnlyException">
 		///		Throws MikValSor.Immutable.FieldIsNotInitOnlyException if target or member of target have fields that are setable.
+		/// </exception>
+		/// <exception cref="InstanceFieldValueNotImmutableException">
+		///		Throws MikValSor.Immutable.InstanceFieldValueNotImmutableException if target contains field value that is mutable.
+		/// </exception>
+		/// <exception cref="UnableToGetFieldValueException">
+		///		Throws MikValSor.Immutable.UnableToGetFieldValueException if field value was not able to be fetched for validation.
 		/// </exception>
 		/// <exception cref="PropertyCanWriteException">
 		///		Throws MikValSor.Immutable.PropertyCanWriteException if target or member of target should have properties that can be set.
 		/// </exception>
+		/// <exception cref="UnableToGetPropertyValueException">
+		///		Throws MikValSor.Immutable.UnableToGetFieldValueException if property value was not able to be fetched for validation.
+		/// </exception>
+		/// <exception cref="InstancePropertyValueNotImmutableException">
+		///		Throws MikValSor.Immutable.InstancePropertyValueNotImmutableException if target contains property value that is mutable.
+		/// </exception>
+		/// <exception cref="BaseClassNotImmutableException">
+		///		Throws MikValSor.Immutable.BaseClassNotImmutableException if target inheret from type that is mutable.
+		/// </exception>
 		/// <exception cref="TypeIsArrayException">
-		///		Throws MikValSor.Immutable.TypeIsArrayException if target or member of target have an array.
+		///		Throws MikValSor.Immutable.TypeIsArrayException if target or member of type have an array.
 		/// </exception>
-		/// <exception cref="TypeIsInterfaceException">
-		///		Throws MikValSor.Immutable.TypeIsInterfaceException if target or member of target is an interface.
+		/// <exception cref="TypeFieldNotImmutableException">
+		///		Throws MikValSor.Immutable.TypeFieldNotImmutableException if target contains field that is mutable.
 		/// </exception>
-		#warning documenteded exceptions needs update
+		/// <exception cref="TypePropertyNotImmutableException">
+		///		Throws MikValSor.Immutable.TypePropertyNotImmutableException if target contains property that is mutable.
+		/// </exception>
 		public void EnsureImmutable(object target)
 		{
-			Validate(target);
+			Validate(target, new List<object>());
 		}
 
 		/// <summary>
 		///		Ensures type garenties object is immutable. 
 		/// </summary>
-		/// <param name="targetType">
+		/// <param name="type">
 		///		Targeted type for immutable validation.
 		/// </param>
-		/// <exception cref="ArgumentNullException">
-		///		Throws System.ArgumentNullException if targetType is null.
-		/// </exception>
-		/// <exception cref="ClassNotSealedException">
-		///		Throws MikValSor.Immutable.ClassNotSealedException if targetType or member of targetType should have been sealed.
-		/// </exception>
 		/// <exception cref="FieldIsNotInitOnlyException">
-		///		Throws MikValSor.Immutable.FieldIsNotInitOnlyException if targetType or member of targetType have fields that are setable.
+		///		Throws MikValSor.Immutable.FieldIsNotInitOnlyException if type or member of type have fields that are setable.
 		/// </exception>
 		/// <exception cref="PropertyCanWriteException">
-		///		Throws MikValSor.Immutable.PropertyCanWriteException if targetType or member of targetType should have properties that can be set.
+		///		Throws MikValSor.Immutable.PropertyCanWriteException if type or member of type should have properties that can be set.
 		/// </exception>
 		/// <exception cref="TypeIsArrayException">
-		///		Throws MikValSor.Immutable.TypeIsArrayException if targetType or member of targetType have an array.
+		///		Throws MikValSor.Immutable.TypeIsArrayException if type or member of type have an array.
 		/// </exception>
-		/// <exception cref="TypeIsInterfaceException">
-		///		Throws MikValSor.Immutable.TypeIsInterfaceException if targetType or member of targetType is an interface.
+		/// <exception cref="BaseClassNotImmutableException">
+		///		Throws MikValSor.Immutable.BaseClassNotImmutableException if type inheret from type that is mutable.
 		/// </exception>
-		#warning documenteded exceptions needs update
+		/// <exception cref="TypeFieldNotImmutableException">
+		///		Throws MikValSor.Immutable.TypeFieldNotImmutableException if type contains field that is mutable.
+		/// </exception>
+		/// <exception cref="TypePropertyNotImmutableException">
+		///		Throws MikValSor.Immutable.TypePropertyNotImmutableException if type contains property that is mutable.
+		/// </exception>
+		/// <exception cref="TypeDoesNotGuaranteeImmutabilityException">
+		///		Throws MikValSor.Immutable.TypeDoesNotGuaranteeImmutabilityException if  instance of type needs to be validated to ensure immutablility.
+		/// </exception>
 		public void EnsureImmutable(Type type)
 		{
-			var result = Validate(type);
+			var result = Validate(type, false, new List<string>());
 			if (result == TypeImmutableValidationResult.MightBeImmutable)
 			{
 				throw new TypeDoesNotGuaranteeImmutabilityException(type);
@@ -134,12 +150,7 @@ namespace MikValSor.Immutable
 			var publicFields = targetType.GetFields().Where(f => !f.IsStatic);
 			foreach (var f in publicFields) yield return f;
 		}
-
-		private void Validate(object target)
-		{
-			Validate(target, new List<object>());
-		}
-
+		
 		private void Validate(object target, List<object> stack)
 		{
 			//If object has already been checked, or is in the process of being checked skip it.
@@ -251,12 +262,7 @@ namespace MikValSor.Immutable
 
 			return;
 		}
-
-		private TypeImmutableValidationResult Validate(Type targetType)
-		{
-			return Validate(targetType, false, new List<string>());
-		}
-
+		
 		private TypeImmutableValidationResult Validate(Type type, bool isBaseType, List<string> stack)
 		{
 			//If type has already been checked, or is in the process of being checked skip it.

@@ -8,7 +8,14 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public sealed class FieldIsNotInitOnlyException : NotImmutableException
 	{
+		/// <summary>
+		///		Contains the type containing the field that was mutable.
+		/// </summary>
 		public readonly Type Type;
+
+		/// <summary>
+		///		Contains the field information of the setable field.
+		/// </summary>
 		public readonly FieldInfo FieldInfo;
 
 		/// <summary>
