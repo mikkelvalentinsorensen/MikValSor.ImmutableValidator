@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net471;net45;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
     <AssemblyName>MikValSor.ImmutableValidator</AssemblyName>
     <RootNamespace>MikValSor.Immutable</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -15,7 +15,12 @@
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>v1.0.6
+    <PackageReleaseNotes>v1.0.7
+- Fixed bug where reuse of validator coused wrong results.
+- Better exception output of validation.
+- Removed Framework 4.7.1 output.
+
+v1.0.6
 - Upgraded to allow for new version of ImmutableCollection and faster execution.
 
 v1.0.5
@@ -41,7 +46,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>
