@@ -15,7 +15,10 @@
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>v1.0.7
+    <PackageReleaseNotes>v1.0.8
+- Added missing net45 inline documentation output.
+
+v1.0.7
 - Fixed bug where reuse of validator coused wrong results.
 - Better exception output of validation.
 - Removed Framework 4.7.1 output.
@@ -46,7 +49,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>
@@ -55,9 +58,17 @@ v1.0.0
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\MikValSor.ImmutableValidator.xml</DocumentationFile>
   </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <DocumentationFile>bin\Debug\net45\MikValSor.ImmutableValidator.xml</DocumentationFile>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\MikValSor.ImmutableValidator.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\Release\net45\MikValSor.ImmutableValidator.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
