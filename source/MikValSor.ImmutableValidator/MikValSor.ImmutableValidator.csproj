@@ -9,13 +9,18 @@
     <Authors>Mikkel Valentin Sørensen</Authors>
     <Company>Mikkel Valentin Sørensen</Company>
     <Description>Library for validating that .NET types are immutable.</Description>
-    <Copyright>Mikkel Valentin Sørensen</Copyright>
+    <Copyright>Mikkel Valentin Sørensen 2018</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ImmutableValidator</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
-    <PackageReleaseNotes>v1.0.8
+    <PackageReleaseNotes>v1.0.9
+- Added method overload for simple types and enum.
+- Added singelton instance of ImmutebleValidator.
+- Added Extension methods for IsImmutable on object.
+
+v1.0.8
 - Added missing net45 inline documentation output.
 
 v1.0.7
@@ -49,7 +54,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>
