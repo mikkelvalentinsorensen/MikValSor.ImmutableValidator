@@ -10,6 +10,12 @@ namespace MikValSor.Immutable
 	/// </summary>
 	public class ImmutableValidator
 	{
+		private readonly static Lazy<ImmutableValidator> lazyInstance = new Lazy<ImmutableValidator>(() => new ImmutableValidator());
+		/// <summary>
+		///		Instance of ImmutableValidator
+		/// </summary>
+		public static ImmutableValidator Instance => lazyInstance.Value;
+
 		/// <summary>
 		///		Construct a new instance of ImmutableValidator.
 		/// </summary>
@@ -20,14 +26,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		int is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted int for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("int is always immutable, so do not validate for this")]
-		public bool IsImmutable(int target)
+		[Obsolete("int are immutable, so do not validate for this")]
+		public bool IsImmutable(int instance)
 		{
 			return true;
 		}
@@ -35,14 +41,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		bool is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted bool for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("bool is always immutable, so do not validate for this")]
-		public bool IsImmutable(bool target)
+		[Obsolete("bool are immutable, so do not validate for this")]
+		public bool IsImmutable(bool instance)
 		{
 			return true;
 		}
@@ -50,14 +56,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		byte is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted byte for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("byte is always immutable, so do not validate for this")]
-		public bool IsImmutable(byte target)
+		[Obsolete("byte are immutable, so do not validate for this")]
+		public bool IsImmutable(byte instance)
 		{
 			return true;
 		}
@@ -65,14 +71,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		char is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted char for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("char is always immutable, so do not validate for this")]
-		public bool IsImmutable(char target)
+		[Obsolete("char are immutable, so do not validate for this")]
+		public bool IsImmutable(char instance)
 		{
 			return true;
 		}
@@ -80,14 +86,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		decimal is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted decimal for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("decimal is always immutable, so do not validate for this")]
-		public bool IsImmutable(decimal target)
+		[Obsolete("decimal are immutable, so do not validate for this")]
+		public bool IsImmutable(decimal instance)
 		{
 			return true;
 		}
@@ -95,14 +101,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		float is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted float for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("float is always immutable, so do not validate for this")]
-		public bool IsImmutable(float target)
+		[Obsolete("float are immutable, so do not validate for this")]
+		public bool IsImmutable(float instance)
 		{
 			return true;
 		}
@@ -110,14 +116,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		long is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted long for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("long is always immutable, so do not validate for this")]
-		public bool IsImmutable(long target)
+		[Obsolete("long are immutable, so do not validate for this")]
+		public bool IsImmutable(long instance)
 		{
 			return true;
 		}
@@ -125,14 +131,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		sbyte is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted sbyte for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("sbyte is always immutable, so do not validate for this")]
-		public bool IsImmutable(sbyte target)
+		[Obsolete("sbyte are immutable, so do not validate for this")]
+		public bool IsImmutable(sbyte instance)
 		{
 			return true;
 		}
@@ -140,14 +146,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		short is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted short for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("short is always immutable, so do not validate for this")]
-		public bool IsImmutable(short target)
+		[Obsolete("short are immutable, so do not validate for this")]
+		public bool IsImmutable(short instance)
 		{
 			return true;
 		}
@@ -155,14 +161,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		string is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted string for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("string is always immutable, so do not validate for this")]
-		public bool IsImmutable(string target)
+		[Obsolete("string are immutable, so do not validate for this")]
+		public bool IsImmutable(string instance)
 		{
 			return true;
 		}
@@ -170,14 +176,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		uint is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted uint for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("uint is always immutable, so do not validate for this")]
-		public bool IsImmutable(uint target)
+		[Obsolete("uint are immutable, so do not validate for this")]
+		public bool IsImmutable(uint instance)
 		{
 			return true;
 		}
@@ -185,14 +191,14 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		ulong is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted ulong for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("ulong is always immutable, so do not validate for this")]
-		public bool IsImmutable(ulong target)
+		[Obsolete("ulong are immutable, so do not validate for this")]
+		public bool IsImmutable(ulong instance)
 		{
 			return true;
 		}
@@ -200,14 +206,29 @@ namespace MikValSor.Immutable
 		/// <summary>
 		///		ushort is immutable.
 		/// </summary>
-		/// <param name="target">
+		/// <param name="instance">
 		///		Targeted ushort for immutable validation.
 		/// </param>
 		/// <returns>
 		///		true.
 		/// </returns>
-		[Obsolete("ushort is always immutable, so do not validate for this")]
-		public bool IsImmutable(ushort target)
+		[Obsolete("ushort are immutable, so do not validate for this")]
+		public bool IsImmutable(ushort instance)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		Enums are immutable.
+		/// </summary>
+		/// <param name="instance">
+		///		Targeted enum for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("Enums are immutable, so do not validate for this")]
+		public bool IsImmutable(Enum instance)
 		{
 			return true;
 		}
@@ -266,7 +287,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted int for immutable validation.
 		/// </param>
-		[Obsolete("int is always immutable, so do not validate for this")]
+		[Obsolete("int are immutable, so do not validate for this")]
 		public void EnsureImmutable(int target)
 		{
 		}
@@ -277,7 +298,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted bool for immutable validation.
 		/// </param>
-		[Obsolete("bool is always immutable, so do not validate for this")]
+		[Obsolete("bool are immutable, so do not validate for this")]
 		public void EnsureImmutable(bool target)
 		{
 		}
@@ -288,7 +309,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted byte for immutable validation.
 		/// </param>
-		[Obsolete("byte is always immutable, so do not validate for this")]
+		[Obsolete("byte are immutable, so do not validate for this")]
 		public void EnsureImmutable(byte target)
 		{
 		}
@@ -299,7 +320,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted char for immutable validation.
 		/// </param>
-		[Obsolete("char is always immutable, so do not validate for this")]
+		[Obsolete("char are immutable, so do not validate for this")]
 		public void EnsureImmutable(char target)
 		{
 		}
@@ -310,7 +331,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted decimal for immutable validation.
 		/// </param>
-		[Obsolete("decimal is always immutable, so do not validate for this")]
+		[Obsolete("decimal are immutable, so do not validate for this")]
 		public void EnsureImmutable(decimal target)
 		{
 		}
@@ -321,7 +342,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted float for immutable validation.
 		/// </param>
-		[Obsolete("float is always immutable, so do not validate for this")]
+		[Obsolete("float are immutable, so do not validate for this")]
 		public void EnsureImmutable(float target)
 		{
 		}
@@ -332,7 +353,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted long for immutable validation.
 		/// </param>
-		[Obsolete("long is always immutable, so do not validate for this")]
+		[Obsolete("long are immutable, so do not validate for this")]
 		public void EnsureImmutable(long target)
 		{
 		}
@@ -343,7 +364,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted sbyte for immutable validation.
 		/// </param>
-		[Obsolete("sbyte is always immutable, so do not validate for this")]
+		[Obsolete("sbyte are immutable, so do not validate for this")]
 		public void EnsureImmutable(sbyte target)
 		{
 		}
@@ -354,7 +375,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted short for immutable validation.
 		/// </param>
-		[Obsolete("short is always immutable, so do not validate for this")]
+		[Obsolete("short are immutable, so do not validate for this")]
 		public void EnsureImmutable(short target)
 		{
 		}
@@ -365,7 +386,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted string for immutable validation.
 		/// </param>
-		[Obsolete("string is always immutable, so do not validate for this")]
+		[Obsolete("string are immutable, so do not validate for this")]
 		public void EnsureImmutable(string target)
 		{
 		}
@@ -376,7 +397,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted uint for immutable validation.
 		/// </param>
-		[Obsolete("uint is always immutable, so do not validate for this")]
+		[Obsolete("uint are immutable, so do not validate for this")]
 		public void EnsureImmutable(uint target)
 		{
 		}
@@ -387,7 +408,7 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted ulong for immutable validation.
 		/// </param>
-		[Obsolete("ulong is always immutable, so do not validate for this")]
+		[Obsolete("ulong are immutable, so do not validate for this")]
 		public void EnsureImmutable(ulong target)
 		{
 		}
@@ -398,8 +419,23 @@ namespace MikValSor.Immutable
 		/// <param name="target">
 		///		Targeted ushort for immutable validation.
 		/// </param>
-		[Obsolete("ushort is always immutable, so do not validate for this")]
+		[Obsolete("ushort are immutable, so do not validate for this")]
 		public void EnsureImmutable(ushort target)
+		{
+		}
+
+
+		/// <summary>
+		///		Enums are immutable.
+		/// </summary>
+		/// <param name="instance">
+		///		Targeted enum for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("Enums are immutable, so do not validate for this")]
+		public void EnsureImmutable(Enum instance)
 		{
 		}
 

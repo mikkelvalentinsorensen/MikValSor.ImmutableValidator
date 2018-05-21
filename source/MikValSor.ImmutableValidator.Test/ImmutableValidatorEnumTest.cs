@@ -16,6 +16,20 @@ namespace MikValSor.Immutable.Test
 		{
 			//Arrange
 			var validator = new ImmutableValidator();
+			object target = MyEnum.A;
+
+			//Act
+			var actual = validator.IsImmutable(target);
+
+			//Assert
+			Assert.IsTrue(actual);
+		}
+
+		[Test]
+		public void IsImmutable_Enum_MyEnum()
+		{
+			//Arrange
+			var validator = new ImmutableValidator();
 			MyEnum target = MyEnum.A;
 
 			//Act
