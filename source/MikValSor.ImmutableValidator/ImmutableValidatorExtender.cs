@@ -229,11 +229,5 @@ namespace MikValSor.Immutable.Extensions
 		{
 			return true;
 		}
-
-		static void Aa()
-		{
-			int[] i = null;
-			TypeImmutableValidationResult.IsImmutable.IsImmutable();
-		}
     }
 }
