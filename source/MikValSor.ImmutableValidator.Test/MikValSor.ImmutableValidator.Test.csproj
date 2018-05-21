@@ -47,11 +47,22 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImmutableValidatorBoolTest.cs" />
+    <Compile Include="ImmutableValidatorByteTest.cs" />
+    <Compile Include="ImmutableValidatorCharTest.cs" />
     <Compile Include="ImmutableValidatorClassFieldArraysTest.cs" />
+    <Compile Include="ImmutableValidatorDecimalTest.cs" />
+    <Compile Include="ImmutableValidatorDoubleTest.cs" />
+    <Compile Include="ImmutableValidatorFloatTest.cs" />
     <Compile Include="ImmutableValidatorImmutableCollectionTest.cs" />
     <Compile Include="ImmutableValidatorInheritanceTest.cs" />
     <Compile Include="ImmutableValidatorClassVariabelArraysTest.cs" />
     <Compile Include="ImmutableValidatorEnumTest.cs" />
+    <Compile Include="ImmutableValidatorIntTest.cs" />
+    <Compile Include="ImmutableValidatorLongTest.cs" />
+    <Compile Include="ImmutableValidatorSbyteTest.cs" />
+    <Compile Include="ImmutableValidatorShortTest.cs" />
+    <Compile Include="ImmutableValidatorStringTest.cs" />
     <Compile Include="ImmutableValidatorStructFieldsTest.cs" />
     <Compile Include="ImmutableValidatorStructVariabelsTest.cs" />
     <Compile Include="ImmutableValidatorStructTypesTest.cs" />
@@ -63,7 +74,9 @@
     <Compile Include="ImmutableValidatorObjectTest.cs" />
     <Compile Include="ImmutableValidatorMultiValidateTest.cs" />
     <Compile Include="ImmutableValidatorReadOnlyCollectionTest.cs" />
-    <Compile Include="ImmutableValidatorValuesTypeTest.cs" />
+    <Compile Include="ImmutableValidatorUintTest.cs" />
+    <Compile Include="ImmutableValidatorUlongTest.cs" />
+    <Compile Include="ImmutableValidatorUshortTest.cs" />
     <Compile Include="ImmutableValidatorTest.cs" />
     <Compile Include="ImmutableValidatoyReuseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

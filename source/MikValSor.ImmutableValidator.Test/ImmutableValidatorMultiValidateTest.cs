@@ -9,8 +9,8 @@ namespace MikValSor.Immutable.Test
 		public void ImmutableValidator_object_StringAndStringArray()
 		{
 			var validator =	new ImmutableValidator();
-			var sArray = new string[0];
-			var s = string.Empty;
+			object sArray = new string[0];
+			object s = string.Empty;
 
 			//Act
 			var s1 = validator.IsImmutable(s);

@@ -18,6 +18,201 @@ namespace MikValSor.Immutable
 		}
 
 		/// <summary>
+		///		int is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted int for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("int is always immutable, so do not validate for this")]
+		public bool IsImmutable(int target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		bool is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted bool for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("bool is always immutable, so do not validate for this")]
+		public bool IsImmutable(bool target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		byte is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted byte for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("byte is always immutable, so do not validate for this")]
+		public bool IsImmutable(byte target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		char is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted char for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("char is always immutable, so do not validate for this")]
+		public bool IsImmutable(char target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		decimal is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted decimal for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("decimal is always immutable, so do not validate for this")]
+		public bool IsImmutable(decimal target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		float is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted float for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("float is always immutable, so do not validate for this")]
+		public bool IsImmutable(float target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		long is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted long for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("long is always immutable, so do not validate for this")]
+		public bool IsImmutable(long target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		sbyte is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted sbyte for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("sbyte is always immutable, so do not validate for this")]
+		public bool IsImmutable(sbyte target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		short is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted short for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("short is always immutable, so do not validate for this")]
+		public bool IsImmutable(short target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		string is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted string for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("string is always immutable, so do not validate for this")]
+		public bool IsImmutable(string target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		uint is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted uint for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("uint is always immutable, so do not validate for this")]
+		public bool IsImmutable(uint target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		ulong is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted ulong for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("ulong is always immutable, so do not validate for this")]
+		public bool IsImmutable(ulong target)
+		{
+			return true;
+		}
+
+		/// <summary>
+		///		ushort is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted ushort for immutable validation.
+		/// </param>
+		/// <returns>
+		///		true.
+		/// </returns>
+		[Obsolete("ushort is always immutable, so do not validate for this")]
+		public bool IsImmutable(ushort target)
+		{
+			return true;
+		}
+
+		/// <summary>
 		///		Checks if target object is immutable.
 		/// </summary>
 		/// <param name="instance">
@@ -63,6 +258,149 @@ namespace MikValSor.Immutable
 			{
 				return false;
 			}
+		}
+
+		/// <summary>
+		///		int is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted int for immutable validation.
+		/// </param>
+		[Obsolete("int is always immutable, so do not validate for this")]
+		public void EnsureImmutable(int target)
+		{
+		}
+		
+		/// <summary>
+		///		boolis immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted bool for immutable validation.
+		/// </param>
+		[Obsolete("bool is always immutable, so do not validate for this")]
+		public void EnsureImmutable(bool target)
+		{
+		}
+
+		/// <summary>
+		///		byte is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted byte for immutable validation.
+		/// </param>
+		[Obsolete("byte is always immutable, so do not validate for this")]
+		public void EnsureImmutable(byte target)
+		{
+		}
+
+		/// <summary>
+		///		char is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted char for immutable validation.
+		/// </param>
+		[Obsolete("char is always immutable, so do not validate for this")]
+		public void EnsureImmutable(char target)
+		{
+		}
+
+		/// <summary>
+		///		decimal is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted decimal for immutable validation.
+		/// </param>
+		[Obsolete("decimal is always immutable, so do not validate for this")]
+		public void EnsureImmutable(decimal target)
+		{
+		}
+
+		/// <summary>
+		///		float is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted float for immutable validation.
+		/// </param>
+		[Obsolete("float is always immutable, so do not validate for this")]
+		public void EnsureImmutable(float target)
+		{
+		}
+
+		/// <summary>
+		///		long is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted long for immutable validation.
+		/// </param>
+		[Obsolete("long is always immutable, so do not validate for this")]
+		public void EnsureImmutable(long target)
+		{
+		}
+
+		/// <summary>
+		///		sbyte is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted sbyte for immutable validation.
+		/// </param>
+		[Obsolete("sbyte is always immutable, so do not validate for this")]
+		public void EnsureImmutable(sbyte target)
+		{
+		}
+
+		/// <summary>
+		///		short is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted short for immutable validation.
+		/// </param>
+		[Obsolete("short is always immutable, so do not validate for this")]
+		public void EnsureImmutable(short target)
+		{
+		}
+
+		/// <summary>
+		///		string is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted string for immutable validation.
+		/// </param>
+		[Obsolete("string is always immutable, so do not validate for this")]
+		public void EnsureImmutable(string target)
+		{
+		}
+
+		/// <summary>
+		///		uint is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted uint for immutable validation.
+		/// </param>
+		[Obsolete("uint is always immutable, so do not validate for this")]
+		public void EnsureImmutable(uint target)
+		{
+		}
+
+		/// <summary>
+		///		ulong is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted ulong for immutable validation.
+		/// </param>
+		[Obsolete("ulong is always immutable, so do not validate for this")]
+		public void EnsureImmutable(ulong target)
+		{
+		}
+
+		/// <summary>
+		///		ushort is immutable.
+		/// </summary>
+		/// <param name="target">
+		///		Targeted ushort for immutable validation.
+		/// </param>
+		[Obsolete("ushort is always immutable, so do not validate for this")]
+		public void EnsureImmutable(ushort target)
+		{
 		}
 
 		/// <summary>
