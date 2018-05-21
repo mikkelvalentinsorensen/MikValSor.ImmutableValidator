@@ -270,9 +270,9 @@ namespace MikValSor.Immutable
 		public void EnsureImmutable(int target)
 		{
 		}
-		
+
 		/// <summary>
-		///		boolis immutable.
+		///		bool is immutable.
 		/// </summary>
 		/// <param name="target">
 		///		Targeted bool for immutable validation.
