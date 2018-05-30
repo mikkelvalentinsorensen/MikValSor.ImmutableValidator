@@ -12,7 +12,7 @@ namespace MikValSor.Immutable
 	{
 		private readonly static Lazy<ImmutableValidator> lazyInstance = new Lazy<ImmutableValidator>(() => new ImmutableValidator());
 		/// <summary>
-		///		Instance of ImmutableValidator
+		///		Instance of ImmutableValidator.
 		/// </summary>
 		public static ImmutableValidator Instance => lazyInstance.Value;
 
