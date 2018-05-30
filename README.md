@@ -1,7 +1,6 @@
 Library for validating that .NET types are immutable.
 
-## Nuget package:
-[https://www.nuget.org/packages/MikValSor.ImmutableValidator](https://www.nuget.org/packages/MikValSor.ImmutableValidator)
+Nuget package: [https://www.nuget.org/packages/MikValSor.ImmutableValidator](https://www.nuget.org/packages/MikValSor.ImmutableValidator)
 
 ## Example:
 ```cs
