@@ -6,7 +6,7 @@ namespace MikValSor.Immutable
 	/// <summary>
 	///		Exception class used to signal when classes property value is set to a value that is mutable.
 	/// </summary>
-	public class InstancePropertyValueNotImmutableException : NotImplementedException
+	public class InstancePropertyValueNotImmutableException : NotImmutableException
 	{
 		/// <summary>
 		///		Instance containing the property with mutable value.
