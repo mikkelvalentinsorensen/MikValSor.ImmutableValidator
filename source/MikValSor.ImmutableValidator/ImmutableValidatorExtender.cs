@@ -2,6 +2,9 @@
 
 namespace MikValSor.Immutable.Extensions
 {
+	/// <summary>
+	///		Immutable validator extensions methods.
+	/// </summary>
     public static class ImmutableValidatorExtender
     {
 

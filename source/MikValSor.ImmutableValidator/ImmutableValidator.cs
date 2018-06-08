@@ -33,7 +33,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("int are immutable, so do not validate for this")]
-		public bool IsImmutable(int instance)
+		public static bool IsImmutable(int instance)
 		{
 			return true;
 		}
@@ -48,10 +48,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("bool are immutable, so do not validate for this")]
-		public bool IsImmutable(bool instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(bool instance) => true;
 
 		/// <summary>
 		///		byte is immutable.
@@ -63,10 +60,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("byte are immutable, so do not validate for this")]
-		public bool IsImmutable(byte instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(byte instance) => true;
 
 		/// <summary>
 		///		char is immutable.
@@ -78,10 +72,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("char are immutable, so do not validate for this")]
-		public bool IsImmutable(char instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(char instance) => true;
 
 		/// <summary>
 		///		decimal is immutable.
@@ -93,10 +84,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("decimal are immutable, so do not validate for this")]
-		public bool IsImmutable(decimal instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(decimal instance) => true;
 
 		/// <summary>
 		///		float is immutable.
@@ -108,10 +96,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("float are immutable, so do not validate for this")]
-		public bool IsImmutable(float instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(float instance) => true;
 
 		/// <summary>
 		///		long is immutable.
@@ -123,10 +108,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("long are immutable, so do not validate for this")]
-		public bool IsImmutable(long instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(long instance) => true;
 
 		/// <summary>
 		///		sbyte is immutable.
@@ -138,10 +120,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("sbyte are immutable, so do not validate for this")]
-		public bool IsImmutable(sbyte instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(sbyte instance) => true;
 
 		/// <summary>
 		///		short is immutable.
@@ -153,10 +132,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("short are immutable, so do not validate for this")]
-		public bool IsImmutable(short instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(short instance) => true;
 
 		/// <summary>
 		///		string is immutable.
@@ -168,10 +144,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("string are immutable, so do not validate for this")]
-		public bool IsImmutable(string instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(string instance) => true;
 
 		/// <summary>
 		///		uint is immutable.
@@ -183,10 +156,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("uint are immutable, so do not validate for this")]
-		public bool IsImmutable(uint instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(uint instance) => true;
 
 		/// <summary>
 		///		ulong is immutable.
@@ -198,10 +168,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("ulong are immutable, so do not validate for this")]
-		public bool IsImmutable(ulong instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(ulong instance) => true;
 
 		/// <summary>
 		///		ushort is immutable.
@@ -213,10 +180,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("ushort are immutable, so do not validate for this")]
-		public bool IsImmutable(ushort instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(ushort instance) => true;
 
 		/// <summary>
 		///		Enums are immutable.
@@ -228,10 +192,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("Enums are immutable, so do not validate for this")]
-		public bool IsImmutable(Enum instance)
-		{
-			return true;
-		}
+		public static bool IsImmutable(Enum instance) => true;
 
 		/// <summary>
 		///		Checks if target object is immutable.
@@ -288,7 +249,7 @@ namespace MikValSor.Immutable
 		///		Targeted int for immutable validation.
 		/// </param>
 		[Obsolete("int are immutable, so do not validate for this")]
-		public void EnsureImmutable(int target)
+		public static void EnsureImmutable(int target)
 		{
 		}
 
@@ -299,7 +260,7 @@ namespace MikValSor.Immutable
 		///		Targeted bool for immutable validation.
 		/// </param>
 		[Obsolete("bool are immutable, so do not validate for this")]
-		public void EnsureImmutable(bool target)
+		public static void EnsureImmutable(bool target)
 		{
 		}
 
@@ -310,7 +271,7 @@ namespace MikValSor.Immutable
 		///		Targeted byte for immutable validation.
 		/// </param>
 		[Obsolete("byte are immutable, so do not validate for this")]
-		public void EnsureImmutable(byte target)
+		public static void EnsureImmutable(byte target)
 		{
 		}
 
@@ -321,7 +282,7 @@ namespace MikValSor.Immutable
 		///		Targeted char for immutable validation.
 		/// </param>
 		[Obsolete("char are immutable, so do not validate for this")]
-		public void EnsureImmutable(char target)
+		public static void EnsureImmutable(char target)
 		{
 		}
 
@@ -332,7 +293,7 @@ namespace MikValSor.Immutable
 		///		Targeted decimal for immutable validation.
 		/// </param>
 		[Obsolete("decimal are immutable, so do not validate for this")]
-		public void EnsureImmutable(decimal target)
+		public static void EnsureImmutable(decimal target)
 		{
 		}
 
@@ -343,7 +304,7 @@ namespace MikValSor.Immutable
 		///		Targeted float for immutable validation.
 		/// </param>
 		[Obsolete("float are immutable, so do not validate for this")]
-		public void EnsureImmutable(float target)
+		public static void EnsureImmutable(float target)
 		{
 		}
 
@@ -354,7 +315,7 @@ namespace MikValSor.Immutable
 		///		Targeted long for immutable validation.
 		/// </param>
 		[Obsolete("long are immutable, so do not validate for this")]
-		public void EnsureImmutable(long target)
+		public static void EnsureImmutable(long target)
 		{
 		}
 
@@ -365,7 +326,7 @@ namespace MikValSor.Immutable
 		///		Targeted sbyte for immutable validation.
 		/// </param>
 		[Obsolete("sbyte are immutable, so do not validate for this")]
-		public void EnsureImmutable(sbyte target)
+		public static void EnsureImmutable(sbyte target)
 		{
 		}
 
@@ -376,7 +337,7 @@ namespace MikValSor.Immutable
 		///		Targeted short for immutable validation.
 		/// </param>
 		[Obsolete("short are immutable, so do not validate for this")]
-		public void EnsureImmutable(short target)
+		public static void EnsureImmutable(short target)
 		{
 		}
 
@@ -387,7 +348,7 @@ namespace MikValSor.Immutable
 		///		Targeted string for immutable validation.
 		/// </param>
 		[Obsolete("string are immutable, so do not validate for this")]
-		public void EnsureImmutable(string target)
+		public static void EnsureImmutable(string target)
 		{
 		}
 
@@ -398,7 +359,7 @@ namespace MikValSor.Immutable
 		///		Targeted uint for immutable validation.
 		/// </param>
 		[Obsolete("uint are immutable, so do not validate for this")]
-		public void EnsureImmutable(uint target)
+		public static void EnsureImmutable(uint target)
 		{
 		}
 
@@ -409,7 +370,7 @@ namespace MikValSor.Immutable
 		///		Targeted ulong for immutable validation.
 		/// </param>
 		[Obsolete("ulong are immutable, so do not validate for this")]
-		public void EnsureImmutable(ulong target)
+		public static void EnsureImmutable(ulong target)
 		{
 		}
 
@@ -420,7 +381,7 @@ namespace MikValSor.Immutable
 		///		Targeted ushort for immutable validation.
 		/// </param>
 		[Obsolete("ushort are immutable, so do not validate for this")]
-		public void EnsureImmutable(ushort target)
+		public static void EnsureImmutable(ushort target)
 		{
 		}
 
@@ -435,7 +396,7 @@ namespace MikValSor.Immutable
 		///		true.
 		/// </returns>
 		[Obsolete("Enums are immutable, so do not validate for this")]
-		public void EnsureImmutable(Enum instance)
+		public static void EnsureImmutable(Enum instance)
 		{
 		}
 
@@ -576,7 +537,7 @@ namespace MikValSor.Immutable
 					catch (TypeIsArrayException t)
 					{
 						//Rule 3a: Exception to allow collections we allow for a single inner array in MikValSor.Immutable.ImmutableCollection`1.
-						if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && fieldInfo.Name == "m_array")
+						if (targetType.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[", StringComparison.InvariantCulture) && fieldInfo.Name == "m_array")
 						{
 							//Test all array elements;
 							foreach (object arrayValue in (fieldValue as Array))
@@ -586,12 +547,12 @@ namespace MikValSor.Immutable
 						}
 						else
 						{
-							throw new InstanceFieldValueNotImmutableException(target, fieldInfo, fieldValue, t);
+							throw new InstanceFieldValueNotImmutableException(target, fieldInfo, t);
 						}
 					}
 					catch (NotImmutableException n)
 					{
-						throw new InstanceFieldValueNotImmutableException(target, fieldInfo, fieldValue, n);
+						throw new InstanceFieldValueNotImmutableException(target, fieldInfo, n);
 					}
 				}
 
@@ -626,7 +587,7 @@ namespace MikValSor.Immutable
 					}
 					catch (NotImmutableException n)
 					{
-						throw new InstancePropertyValueNotImmutableException(target, propertyInfo, propertyValue, n);
+						throw new InstancePropertyValueNotImmutableException(target, propertyInfo, n);
 					}
 				}
 
@@ -718,7 +679,7 @@ namespace MikValSor.Immutable
 				catch (TypeIsArrayException t)
 				{
 					//Rule 7a: Exception to allow collections we allow for a single inner array in MikValSor.Immutable.ImmutableCollection`1.
-					if (type.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[") && fieldInfo.Name == "m_array")
+					if (type.FullName.StartsWith("MikValSor.Immutable.ImmutableCollection`1[", StringComparison.InvariantCulture) && fieldInfo.Name == "m_array")
 					{
 						//Test element type;
 						var arrayElementTypeResult = Validate(fieldInfo.FieldType.GetElementType(), false, stack);
