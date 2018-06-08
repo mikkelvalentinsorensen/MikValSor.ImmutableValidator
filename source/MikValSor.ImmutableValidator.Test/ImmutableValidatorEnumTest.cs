@@ -33,7 +33,9 @@ namespace MikValSor.Immutable.Test
 			MyEnum target = MyEnum.A;
 
 			//Act
+#pragma warning disable CS0618 // Type or member is obsolete
 			var actual = validator.IsImmutable(target);
+#pragma warning restore CS0618 // Type or member is obsolete
 
 			//Assert
 			Assert.IsTrue(actual);

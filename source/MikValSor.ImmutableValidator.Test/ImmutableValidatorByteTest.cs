@@ -13,7 +13,9 @@ namespace MikValSor.Immutable.Test
 			byte target = 0;
 
 			//Act
+#pragma warning disable CS0618 // Type or member is obsolete
 			var actual = validator.IsImmutable(target);
+#pragma warning restore CS0618 // Type or member is obsolete
 
 			//Assert
 			Assert.IsTrue(actual);
@@ -68,7 +70,9 @@ namespace MikValSor.Immutable.Test
 			byte target = 0;
 
 			//Act
+#pragma warning disable CS0618 // Type or member is obsolete
 			validator.EnsureImmutable(target);
+#pragma warning restore CS0618 // Type or member is obsolete
 
 			//Assert
 		}
