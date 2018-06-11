@@ -10,7 +10,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class PropertyCanWriteException : NotImmutableException
 	{
-		public PropertyCanWriteException(Type type, PropertyInfo propertyInfo) : base($"Property: {propertyInfo.Name}, Type: {type.FullName}")
+		internal PropertyCanWriteException(Type type, PropertyInfo propertyInfo) : base($"Property: {propertyInfo.Name}, Type: {type.FullName}")
 		{
 		}
 

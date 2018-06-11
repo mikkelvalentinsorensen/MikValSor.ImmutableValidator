@@ -28,14 +28,14 @@ namespace MikValSor.Immutable
 		/// <param name="innerException">
 		///		The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.
 		/// </param>
-		internal NotImmutableException(string message, Exception innerException) : base(message, innerException)
+		protected NotImmutableException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
 		/// <summary>
 		///  Initializes a new instance of the class.
 		/// </summary>
-		public NotImmutableException()
+		protected NotImmutableException()
 		{
 		}
 

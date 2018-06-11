@@ -11,7 +11,7 @@ namespace MikValSor.Immutable
 	public class InstanceFieldValueNotImmutableException : NotImmutableException
 	{
 
-		public InstanceFieldValueNotImmutableException(object instance, FieldInfo fieldInfo, NotImmutableException innerException) : base($"Instance of type {instance.GetType().FullName} field {fieldInfo.Name} is mutable.", innerException)
+		internal InstanceFieldValueNotImmutableException(object instance, FieldInfo fieldInfo, NotImmutableException innerException) : base($"Instance of type {instance.GetType().FullName} field {fieldInfo.Name} is mutable.", innerException)
 		{
 		}
 

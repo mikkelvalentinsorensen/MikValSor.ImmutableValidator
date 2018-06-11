@@ -10,7 +10,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class UnableToGetFieldValueException : NotImmutableException
 	{
-		public UnableToGetFieldValueException(object instance, FieldInfo fieldInfo, Exception innerException) : base($"Unable to get value of instance {instance.GetType().FullName} field {fieldInfo.Name}.", innerException)
+		internal UnableToGetFieldValueException(object instance, FieldInfo fieldInfo, Exception innerException) : base($"Unable to get value of instance {instance.GetType().FullName} field {fieldInfo.Name}.", innerException)
 		{
 		}
 

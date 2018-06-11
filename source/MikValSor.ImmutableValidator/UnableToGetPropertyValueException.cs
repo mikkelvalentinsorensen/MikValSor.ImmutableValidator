@@ -10,7 +10,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class UnableToGetPropertyValueException : NotImmutableException
 	{
-		public UnableToGetPropertyValueException(object instance, PropertyInfo propertyInfo, Exception e) : base($"Unable to get value of instance {instance.GetType().FullName} property {propertyInfo.Name}.", e)
+		internal UnableToGetPropertyValueException(object instance, PropertyInfo propertyInfo, Exception e) : base($"Unable to get value of instance {instance.GetType().FullName} property {propertyInfo.Name}.", e)
 		{
 		}
 

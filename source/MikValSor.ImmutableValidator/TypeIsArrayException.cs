@@ -9,7 +9,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class TypeIsArrayException : NotImmutableException
 	{
-		public TypeIsArrayException(Type type) : base($"Type: {type.FullName}")
+		internal TypeIsArrayException(Type type) : base($"Type: {type.FullName}")
 		{
 		}
 

@@ -10,7 +10,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class TypePropertyNotImmutableException : NotImmutableException
 	{
-		public TypePropertyNotImmutableException(Type type, PropertyInfo propertyInfo, NotImmutableException innerException) : base($"Property: {propertyInfo.Name}, Type: {type.FullName}", innerException)
+		internal TypePropertyNotImmutableException(Type type, PropertyInfo propertyInfo, NotImmutableException innerException) : base($"Property: {propertyInfo.Name}, Type: {type.FullName}", innerException)
 		{
 		}
 

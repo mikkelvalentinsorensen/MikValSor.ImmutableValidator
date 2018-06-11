@@ -9,7 +9,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class BaseClassNotImmutableException : NotImmutableException
 	{
-		public BaseClassNotImmutableException(Type baseType, Type derivedType, NotImmutableException innerException) : base($"Type {derivedType.FullName} because base inherited base class {baseType.FullName} was not immutable.", innerException)
+		internal BaseClassNotImmutableException(Type baseType, Type derivedType, NotImmutableException innerException) : base($"Type {derivedType.FullName} because base inherited base class {baseType.FullName} was not immutable.", innerException)
 		{
 		}
 

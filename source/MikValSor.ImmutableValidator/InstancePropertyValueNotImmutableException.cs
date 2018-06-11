@@ -10,7 +10,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class InstancePropertyValueNotImmutableException : NotImmutableException
 	{
-		public InstancePropertyValueNotImmutableException(object instance, PropertyInfo propertyInfo, NotImmutableException n) : base($"Instance of type {instance.GetType().FullName} property {propertyInfo.Name} is mutable.", n)
+		internal InstancePropertyValueNotImmutableException(object instance, PropertyInfo propertyInfo, NotImmutableException n) : base($"Instance of type {instance.GetType().FullName} property {propertyInfo.Name} is mutable.", n)
 		{
 		}
 

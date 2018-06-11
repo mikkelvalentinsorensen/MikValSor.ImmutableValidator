@@ -9,7 +9,7 @@ namespace MikValSor.Immutable
 	[Serializable]
 	public class TypeDoesNotGuaranteeImmutabilityException : NotImmutableException
     {
-		public TypeDoesNotGuaranteeImmutabilityException(Type type) : base($"Type {type.FullName} does not guarantee immutability, instances of type must be validated to ensure immutability.")
+		internal TypeDoesNotGuaranteeImmutabilityException(Type type) : base($"Type {type.FullName} does not guarantee immutability, instances of type must be validated to ensure immutability.")
 		{
 		}
 
