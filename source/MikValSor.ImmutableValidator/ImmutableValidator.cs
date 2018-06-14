@@ -664,6 +664,10 @@ namespace MikValSor.Immutable
 			//Interfaces, Struct and Class fields
 			foreach (var fieldInfo in GetInstanceFields(type))
 			{
+				//Rule E1: Ignore if has ImmutableValidatorIgnoreAttribute
+				var attr = (ImmutableValidatorIgnoreAttribute[])fieldInfo.GetCustomAttributes(typeof(ImmutableValidatorIgnoreAttribute), false);
+				if (attr.Length > 0) continue;
+
 				//Rule 6: Interfaces, structs and classes fields must be readonly.
 				if (!fieldInfo.IsInitOnly)
 				{
