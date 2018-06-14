@@ -15,7 +15,12 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Immutable Validator .NET ImmutableValidator MikValSor</PackageTags>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <PackageReleaseNotes>v1.0.9
+    <PackageReleaseNotes>v1.0.10
+- Added ImmutableValidatorIgnoreAttribute
+- Improvements to exceptions and made the serializable.
+- Fixed inheritances bug in InstancePropertyValueNotImmutableException
+
+v1.0.9
 - Added method overload for simple types and enum.
 - Added singelton instance of ImmutebleValidator.
 - Added Extension methods for IsImmutable on object.
@@ -54,7 +59,7 @@ v1.0.1
 v1.0.0
 - Initial release.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>
