@@ -2,92 +2,92 @@
 
 namespace MikValSor.Immutable.Test
 {
-	[TestFixture]
-	public class ImmutableValidatorCharTest
-	{
-		[Test]
-		public void IsImmutable_char_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			char target = '0';
+    [TestFixture]
+    public class ImmutableValidatorCharTest
+    {
+        [Test]
+        public void IsImmutable_char_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            char target = '0';
 
-			//Act
+            //Act
 #pragma warning disable CS0618 // Type or member is obsolete
-			var actual = validator.IsImmutable(target);
+            var actual = validator.IsImmutable(target);
 #pragma warning restore CS0618 // Type or member is obsolete
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_object_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = '0';
+        [Test]
+        public void IsImmutable_object_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = '0';
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(char);
+        [Test]
+        public void IsImmutable_Type_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(char);
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void EnsureImmutable_object_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = '0';
+        [Test]
+        public void EnsureImmutable_object_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = '0';
 
-			//Act
-			validator.EnsureImmutable(target);
+            //Act
+            validator.EnsureImmutable(target);
 
-			//Assert
-		}
+            //Assert
+        }
 
-		[Test]
-		public void EnsureImmutable_char_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			char target = '0';
+        [Test]
+        public void EnsureImmutable_char_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            char target = '0';
 
-			//Act
+            //Act
 #pragma warning disable CS0618 // Type or member is obsolete
-			validator.EnsureImmutable(target);
+            validator.EnsureImmutable(target);
 #pragma warning restore CS0618 // Type or member is obsolete
 
-			//Assert
-		}
+            //Assert
+        }
 
-		[Test]
-		public void EnsureImmutable_Type_char()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(char);
+        [Test]
+        public void EnsureImmutable_Type_char()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(char);
 
-			//Act
-			validator.EnsureImmutable(target);
+            //Act
+            validator.EnsureImmutable(target);
 
-			//Assert
-		}
-	}
+            //Assert
+        }
+    }
 }

@@ -2,205 +2,205 @@
 
 namespace MikValSor.Immutable.Test
 {
-	[TestFixture]
-	public class ImmutableValidatorStructFieldsTest
-	{
-		private struct PrivateStringGetTestStruct
-		{
-			private string s { get; }
-		}
+    [TestFixture]
+    public class ImmutableValidatorStructFieldsTest
+    {
+        private struct PrivateStringGetTestStruct
+        {
+            private string s { get; }
+        }
 
-		[Test]
-		public void IsImmutable_Type_PrivateStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(PrivateStringGetTestStruct);
+        [Test]
+        public void IsImmutable_Type_PrivateStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(PrivateStringGetTestStruct);
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_object_PrivateStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new PrivateStringGetTestStruct();
+        [Test]
+        public void IsImmutable_object_PrivateStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new PrivateStringGetTestStruct();
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		private struct PrivateStringGetSetTestStruct
-		{
-			private string s { get; set; }
-		}
+        private struct PrivateStringGetSetTestStruct
+        {
+            private string s { get; set; }
+        }
 
-		[Test]
-		public void IsImmutable_Type_PrivateStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(PrivateStringGetSetTestStruct);
+        [Test]
+        public void IsImmutable_Type_PrivateStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(PrivateStringGetSetTestStruct);
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
+            //Assert
+            Assert.IsFalse(actual);
+        }
 
-		[Test]
-		public void IsImmutable_object_PrivateStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new PrivateStringGetSetTestStruct();
+        [Test]
+        public void IsImmutable_object_PrivateStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new PrivateStringGetSetTestStruct();
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
-		
-		private struct InternalStringGetTestStruct
-		{
-			internal string s { get; }
-		}
+            //Assert
+            Assert.IsFalse(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_InternalStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(InternalStringGetTestStruct);
+        private struct InternalStringGetTestStruct
+        {
+            internal string s { get; }
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_Type_InternalStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(InternalStringGetTestStruct);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		[Test]
-		public void IsImmutable_object_InternalStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new InternalStringGetTestStruct();
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_object_InternalStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new InternalStringGetTestStruct();
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		private struct InternalStringGetSetTestStruct
-		{
-			internal string s { get; set; }
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_InternalStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(InternalStringGetSetTestStruct);
+        private struct InternalStringGetSetTestStruct
+        {
+            internal string s { get; set; }
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_Type_InternalStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(InternalStringGetSetTestStruct);
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		[Test]
-		public void IsImmutable_object_InternalStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new InternalStringGetSetTestStruct();
+            //Assert
+            Assert.IsFalse(actual);
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_object_InternalStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new InternalStringGetSetTestStruct();
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		private struct PublicStringGetTestStruct
-		{
-			public string s { get; }
-		}
+            //Assert
+            Assert.IsFalse(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_PublicStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(PublicStringGetTestStruct);
+        private struct PublicStringGetTestStruct
+        {
+            public string s { get; }
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_Type_PublicStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(PublicStringGetTestStruct);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		[Test]
-		public void IsImmutable_object_PublicStringGetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new PublicStringGetTestStruct();
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_object_PublicStringGetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new PublicStringGetTestStruct();
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		private struct PublicStringGetSetTestStruct
-		{
-			public string s { get; set; }
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_PublicStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = typeof(PublicStringGetSetTestStruct);
+        private struct PublicStringGetSetTestStruct
+        {
+            public string s { get; set; }
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_Type_PublicStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = typeof(PublicStringGetSetTestStruct);
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
+            //Act
+            var actual = validator.IsImmutable(target);
 
-		[Test]
-		public void IsImmutable_object_PublicStringGetSetTestStruct()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = new PublicStringGetSetTestStruct();
+            //Assert
+            Assert.IsFalse(actual);
+        }
 
-			//Act
-			var actual = validator.IsImmutable(target);
+        [Test]
+        public void IsImmutable_object_PublicStringGetSetTestStruct()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = new PublicStringGetSetTestStruct();
 
-			//Assert
-			Assert.IsFalse(actual);
-		}
-	}
+            //Act
+            var actual = validator.IsImmutable(target);
+
+            //Assert
+            Assert.IsFalse(actual);
+        }
+    }
 }

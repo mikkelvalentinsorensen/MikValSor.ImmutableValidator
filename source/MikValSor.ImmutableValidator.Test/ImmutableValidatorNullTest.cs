@@ -2,44 +2,44 @@
 
 namespace MikValSor.Immutable.Test
 {
-	[TestFixture]
-	public class ImmutableValidatorNullTest
-	{
-		[Test]
-		public void IsImmutable_object_null()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			object target = null;
+    [TestFixture]
+    public class ImmutableValidatorNullTest
+    {
+        [Test]
+        public void IsImmutable_object_null()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            object target = null;
 
-			//Act
-			var actual = validator.IsImmutable(target);
+            //Act
+            var actual = validator.IsImmutable(target);
 
-			//Assert
-			Assert.IsTrue(actual);
-		}
+            //Assert
+            Assert.IsTrue(actual);
+        }
 
-		[Test]
-		public void IsImmutable_Type_null()
-		{
-			//Arrange
-			var validator = new ImmutableValidator();
-			System.Type target = null;
+        [Test]
+        public void IsImmutable_Type_null()
+        {
+            //Arrange
+            var validator = new ImmutableValidator();
+            System.Type target = null;
 
-			//Act
-			try
-			{
-				var actual = validator.IsImmutable(target);
-			}
+            //Act
+            try
+            {
+                var actual = validator.IsImmutable(target);
+            }
 
-			//Assert
-			catch (System.ArgumentNullException)
-			{
-				Assert.Pass();
-				return;
-			}
-			Assert.Fail();
-		}
+            //Assert
+            catch (System.ArgumentNullException)
+            {
+                Assert.Pass();
+                return;
+            }
+            Assert.Fail();
+        }
 
-	}
+    }
 }
