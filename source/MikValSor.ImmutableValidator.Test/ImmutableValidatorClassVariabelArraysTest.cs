@@ -1,16 +1,21 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
+    
     public class ImmutableValidatorClassVariabelArraysTest
     {
         private sealed class PrivateStringArrayTestClass
         {
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0044 // Add readonly modifier
+#pragma warning disable IDE0044 // Add readonly modifier
             private string[] s;
+#pragma warning restore IDE0044 // Add readonly modifier
+#pragma warning restore IDE0051 // Remove unused private members
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringArrayTestClass()
         {
             //Arrange
@@ -21,10 +26,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateStringArrayTestClass()
         {
             //Arrange
@@ -35,15 +40,17 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PrivateReadonlyStringArrayTestClass
         {
+#pragma warning disable IDE0051 // Remove unused private members
             private readonly string[] s;
+#pragma warning restore IDE0051 // Remove unused private members
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -54,10 +61,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -68,14 +75,16 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class PrivateConstStringArrayTestClass
         {
+#pragma warning disable IDE0051 // Remove unused private members
             private const string[] s = null;
+#pragma warning restore IDE0051 // Remove unused private members
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateConstStringArrayTestClass()
         {
             //Arrange
@@ -86,10 +95,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateConstStringArrayTestClass()
         {
             //Arrange
@@ -100,15 +109,17 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private sealed class ProtectedStringArrayTestClass
         {
+#pragma warning disable CS0628 // New protected member declared in sealed class
             protected string[] s;
+#pragma warning restore CS0628 // New protected member declared in sealed class
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedStringArrayTestClass()
         {
             //Arrange
@@ -119,10 +130,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedStringArrayTestClass()
         {
             //Arrange
@@ -133,15 +144,17 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class ProtectedReadonlyStringArrayTestClass
         {
+#pragma warning disable IDE0051 // Remove unused private members
             private readonly string[] s;
+#pragma warning restore IDE0051 // Remove unused private members
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -152,10 +165,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -166,14 +179,16 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class ProtectedConstStringArrayTestClass
         {
+#pragma warning disable IDE0051 // Remove unused private members
             private const string[] s = null;
+#pragma warning restore IDE0051 // Remove unused private members
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedConstStringArrayTestClass()
         {
             //Arrange
@@ -184,10 +199,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedConstStringArrayTestClass()
         {
             //Arrange
@@ -198,15 +213,17 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private sealed class PrivateProtectedStringArrayTestClass
         {
+#pragma warning disable CS0628 // New protected member declared in sealed class
             private protected string[] s;
+#pragma warning restore CS0628 // New protected member declared in sealed class
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateProtectedStringArrayTestClass()
         {
             //Arrange
@@ -217,10 +234,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateProtectedStringArrayTestClass()
         {
             //Arrange
@@ -231,15 +248,17 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PrivateProtectedReadonlyStringArrayTestClass
         {
+#pragma warning disable CS0628 // New protected member declared in sealed class
             private protected readonly string[] s;
+#pragma warning restore CS0628 // New protected member declared in sealed class
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateProtectedReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -250,10 +269,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateProtectedReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -264,14 +283,16 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class PrivateProtectedConstStringArrayTestClass
         {
+#pragma warning disable CS0628 // New protected member declared in sealed class
             private protected const string[] s = null;
+#pragma warning restore CS0628 // New protected member declared in sealed class
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateProtectedConstStringArrayTestClass()
         {
             //Arrange
@@ -282,10 +303,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateProtectedConstStringArrayTestClass()
         {
             //Arrange
@@ -296,7 +317,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private sealed class PublicStringArrayTestClass
@@ -304,7 +325,7 @@ namespace MikValSor.Immutable.Test
             public string[] s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicStringArrayTestClass()
         {
             //Arrange
@@ -315,10 +336,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicStringArrayTestClass()
         {
             //Arrange
@@ -329,7 +350,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PublicReadonlyStringArrayTestClass
@@ -337,7 +358,7 @@ namespace MikValSor.Immutable.Test
             public readonly string[] s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -348,10 +369,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicReadonlyStringArrayTestClass()
         {
             //Arrange
@@ -362,14 +383,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class PublicConstStringArrayTestClass
         {
             public const string[] s = null;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicConstStringArrayTestClass()
         {
             //Arrange
@@ -380,10 +401,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicConstStringArrayTestClass()
         {
             //Arrange
@@ -394,7 +415,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
     }
 }

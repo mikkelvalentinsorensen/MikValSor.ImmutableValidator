@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    class ImmutableValidatorIgnoreAttributeTest
+    public class ImmutableValidatorIgnoreAttributeTest
     {
         private sealed class PrivateStringTestClass
         {
             string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringTestClass()
         {
             //Arrange
@@ -20,7 +20,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PrivateStringWithAttributeTestClass
@@ -29,7 +29,7 @@ namespace MikValSor.Immutable.Test
             string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringWithAttributeTestClass()
         {
             //Arrange
@@ -40,7 +40,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private abstract class InheritedBaseTestClass
@@ -53,7 +53,7 @@ namespace MikValSor.Immutable.Test
         {
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_InheritedTestClass()
         {
             //Arrange
@@ -64,7 +64,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
     }
 }

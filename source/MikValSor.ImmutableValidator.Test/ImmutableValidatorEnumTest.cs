@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorEnumTest
     {
         private enum MyEnum
@@ -11,7 +10,7 @@ namespace MikValSor.Immutable.Test
             B
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_MyEnum()
         {
             //Arrange
@@ -22,10 +21,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Enum_MyEnum()
         {
             //Arrange
@@ -38,10 +37,10 @@ namespace MikValSor.Immutable.Test
 #pragma warning restore CS0618 // Type or member is obsolete
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_MyEnum()
         {
             //Arrange
@@ -52,10 +51,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_MyEnumArray()
         {
             //Arrange
@@ -66,10 +65,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_MyEnumArray()
         {
             //Arrange
@@ -80,7 +79,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
     }
 }

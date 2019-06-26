@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorArrayTest
     {
-        [Test]
+        [Fact]
         public void IsImmutable_array_array()
         {
             //Arrange
@@ -16,10 +15,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_array()
         {
             //Arrange
@@ -30,10 +29,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_array()
         {
             //Arrange
@@ -44,10 +43,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_object_array()
         {
             //Arrange
@@ -63,12 +62,12 @@ namespace MikValSor.Immutable.Test
             //Assert
             catch (NotImmutableException)
             {
-                Assert.Pass();
+                return;
             }
-            Assert.Fail();
+            Assert.True(false);
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_array_array()
         {
             //Arrange
@@ -84,12 +83,12 @@ namespace MikValSor.Immutable.Test
             //Assert
             catch (NotImmutableException)
             {
-                Assert.Pass();
+                return;
             }
-            Assert.Fail();
+            Assert.True(false);
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_Type_array()
         {
             //Arrange
@@ -105,9 +104,9 @@ namespace MikValSor.Immutable.Test
             //Assert
             catch (NotImmutableException)
             {
-                Assert.Pass();
+                return;
             }
-            Assert.Fail();
+            Assert.True(false);
         }
     }
 }

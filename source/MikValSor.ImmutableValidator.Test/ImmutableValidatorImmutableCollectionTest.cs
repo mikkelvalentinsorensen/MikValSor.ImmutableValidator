@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorImmutableCollectionTest
     {
-        [Test]
+        [Fact]
         public void ImmutableValidator_ImmutableCollection_Assumption()
         {
             //Arrange
@@ -18,10 +17,10 @@ namespace MikValSor.Immutable.Test
             source[0] = 'B';
 
             //Assert
-            Assert.AreEqual('A', readonlyCollection[0]);
+            Assert.Equal('A', readonlyCollection[0]);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ImmutableCollectionChar()
         {
             //Arrange
@@ -34,10 +33,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ImmutableCollectionObject()
         {
             //Arrange
@@ -50,10 +49,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ImmutableCollectionChar()
         {
             //Arrange
@@ -65,10 +64,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ImmutableCollectionCharArray()
         {
             //Arrange
@@ -79,10 +78,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ImmutableCollectionCharList()
         {
             //Arrange
@@ -94,10 +93,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ImmutableCollectionCharListAsObject()
         {
             //Arrange
@@ -109,7 +108,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
     }
 }

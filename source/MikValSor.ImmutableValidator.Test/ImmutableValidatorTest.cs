@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorTest
     {
-        [Test]
+        [Fact]
         public void ImmutableValidator_construct()
         {
             //Act
             new ImmutableValidator();
 
             //Assert
-            Assert.Pass();
+            return;
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorNullTest
     {
-        [Test]
+        [Fact]
         public void IsImmutable_object_null()
         {
             //Arrange
@@ -16,10 +15,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_null()
         {
             //Arrange
@@ -35,10 +34,9 @@ namespace MikValSor.Immutable.Test
             //Assert
             catch (System.ArgumentNullException)
             {
-                Assert.Pass();
                 return;
             }
-            Assert.Fail();
+            Assert.True(false);
         }
 
     }

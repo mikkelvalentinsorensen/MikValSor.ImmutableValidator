@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorStructVariabelsTest
     {
         private struct PrivateStringTestStruct
@@ -10,7 +9,7 @@ namespace MikValSor.Immutable.Test
             private string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringTestStruct()
         {
             //Arrange
@@ -21,10 +20,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateStringTestStruct()
         {
             //Arrange
@@ -35,7 +34,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private struct PrivateReadonlyStringTestStruct
@@ -43,7 +42,7 @@ namespace MikValSor.Immutable.Test
             private readonly string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateReadonlyStringTestStruct()
         {
             //Arrange
@@ -54,10 +53,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateReadonlyStringTestStruct()
         {
             //Arrange
@@ -68,14 +67,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
         private struct PrivateConstStringTestStruct
         {
             private const string s = "";
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateConstStringTestStruct()
         {
             //Arrange
@@ -86,10 +85,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateConstStringTestStruct()
         {
             //Arrange
@@ -100,7 +99,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private struct ProtectedReadonlyStringTestStruct
@@ -108,7 +107,7 @@ namespace MikValSor.Immutable.Test
             private readonly string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedReadonlyStringTestStruct()
         {
             //Arrange
@@ -119,10 +118,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedReadonlyStringTestStruct()
         {
             //Arrange
@@ -133,14 +132,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
         private struct ProtectedConstStringTestStruct
         {
             private const string s = "";
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedConstStringTestStruct()
         {
             //Arrange
@@ -151,10 +150,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedConstStringTestStruct()
         {
             //Arrange
@@ -165,7 +164,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
         private struct PublicStringTestStruct
@@ -173,7 +172,7 @@ namespace MikValSor.Immutable.Test
             public string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicStringTestStruct()
         {
             //Arrange
@@ -184,10 +183,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicStringTestStruct()
         {
             //Arrange
@@ -198,7 +197,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private struct PublicReadonlyStringTestStruct
@@ -206,7 +205,7 @@ namespace MikValSor.Immutable.Test
             public readonly string s;
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicReadonlyStringTestStruct()
         {
             //Arrange
@@ -217,10 +216,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicReadonlyStringTestStruct()
         {
             //Arrange
@@ -231,14 +230,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
         private struct PublicConstStringTestStruct
         {
             public const string s = "";
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicConstStringTestStruct()
         {
             //Arrange
@@ -249,10 +248,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicConstStringTestStruct()
         {
             //Arrange
@@ -263,7 +262,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
     }
 }

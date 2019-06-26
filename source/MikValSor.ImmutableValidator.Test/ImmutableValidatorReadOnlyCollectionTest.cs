@@ -1,12 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System.Collections.ObjectModel;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorReadOnlyCollectionTest
     {
-        [Test]
+        [Fact]
         public void ImmutableValidator_ReadOnlyCollection_NotUsableAssumption()
         {
             //Arrange
@@ -17,9 +16,9 @@ namespace MikValSor.Immutable.Test
             source[0] = 'B';
 
             //Assert
-            Assert.AreNotEqual('A', readonlyCollection[0]);
+            Assert.NotEqual('A', readonlyCollection[0]);
         }
-        [Test]
+        [Fact]
         public void ImmutableValidator_ReadOnlyCollection_UsableIfClonedAssumption()
         {
             //Arrange
@@ -30,7 +29,7 @@ namespace MikValSor.Immutable.Test
             source[0] = 'B';
 
             //Assert
-            Assert.AreEqual('A', readonlyCollection[0]);
+            Assert.Equal('A', readonlyCollection[0]);
         }
     }
 }

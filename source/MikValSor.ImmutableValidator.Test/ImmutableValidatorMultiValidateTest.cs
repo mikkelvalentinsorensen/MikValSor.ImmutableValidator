@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorMultiValidateTest
     {
-        [Test]
+        [Fact]
         public void ImmutableValidator_object_StringAndStringArray()
         {
             var validator = new ImmutableValidator();
@@ -19,10 +18,10 @@ namespace MikValSor.Immutable.Test
             var sArray2 = validator.IsImmutable(sArray);
 
             //Assert
-            Assert.IsTrue(s1);
-            Assert.IsFalse(sArray1);
-            Assert.IsTrue(s2);
-            Assert.IsFalse(sArray2);
+            Assert.True(s1);
+            Assert.False(sArray1);
+            Assert.True(s2);
+            Assert.False(sArray2);
         }
     }
 }

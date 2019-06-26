@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorLongTest
     {
-        [Test]
+        [Fact]
         public void IsImmutable_long_long()
         {
             //Arrange
@@ -18,10 +17,10 @@ namespace MikValSor.Immutable.Test
 #pragma warning restore CS0618 // Type or member is obsolete
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_long()
         {
             //Arrange
@@ -32,10 +31,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_long()
         {
             //Arrange
@@ -46,10 +45,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_object_long()
         {
             //Arrange
@@ -62,7 +61,7 @@ namespace MikValSor.Immutable.Test
             //Assert
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_long_long()
         {
             //Arrange
@@ -77,7 +76,7 @@ namespace MikValSor.Immutable.Test
             //Assert
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_Type_long()
         {
             //Arrange

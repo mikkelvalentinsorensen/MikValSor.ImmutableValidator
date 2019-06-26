@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatoyReuseTest
     {
         private sealed class WrapTestObject
@@ -14,7 +13,7 @@ namespace MikValSor.Immutable.Test
             }
         }
 
-        [Test]
+        [Fact]
         public void TestObject1()
         {
             //Arrange
@@ -25,10 +24,10 @@ namespace MikValSor.Immutable.Test
             var result1 = validator.IsImmutable(object1);
 
             //Assert
-            Assert.IsTrue(result1);
+            Assert.True(result1);
         }
 
-        [Test]
+        [Fact]
         public void TestObject2()
         {
             //Arrange
@@ -39,10 +38,10 @@ namespace MikValSor.Immutable.Test
             var result2 = validator.IsImmutable(object2);
 
             //Assert
-            Assert.IsFalse(result2);
+            Assert.False(result2);
         }
 
-        [Test]
+        [Fact]
         public void TestObject1and2()
         {
             //Arrange
@@ -55,8 +54,8 @@ namespace MikValSor.Immutable.Test
             var result2 = validator.IsImmutable(object2);
 
             //Assert
-            Assert.IsTrue(result1);
-            Assert.IsFalse(result2);
+            Assert.True(result1);
+            Assert.False(result2);
         }
     }
 }

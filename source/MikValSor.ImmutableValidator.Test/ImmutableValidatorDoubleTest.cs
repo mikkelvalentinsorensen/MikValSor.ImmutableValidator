@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorDoubleTest
     {
-        [Test]
+        [Fact]
         public void IsImmutable_double_double()
         {
             //Arrange
@@ -16,10 +15,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_double()
         {
             //Arrange
@@ -30,10 +29,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_double()
         {
             //Arrange
@@ -44,10 +43,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.True(actual);
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_object_double()
         {
             //Arrange
@@ -60,7 +59,7 @@ namespace MikValSor.Immutable.Test
             //Assert
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_double_double()
         {
             //Arrange
@@ -73,7 +72,7 @@ namespace MikValSor.Immutable.Test
             //Assert
         }
 
-        [Test]
+        [Fact]
         public void EnsureImmutable_Type_double()
         {
             //Arrange

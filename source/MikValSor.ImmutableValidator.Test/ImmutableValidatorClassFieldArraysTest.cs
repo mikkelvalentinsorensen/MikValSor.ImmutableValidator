@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MikValSor.Immutable.Test
 {
-    [TestFixture]
     public class ImmutableValidatorClassFieldArraysTest
     {
         private sealed class PrivateStringArrayGetTestClass
@@ -10,7 +9,7 @@ namespace MikValSor.Immutable.Test
             private string[] s { get; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringArrayGetTestClass()
         {
             //Arrange
@@ -21,10 +20,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateStringArrayGetTestClass()
         {
             //Arrange
@@ -35,7 +34,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PrivateStringArrayGetSetTestClass
@@ -43,7 +42,7 @@ namespace MikValSor.Immutable.Test
             private string[] s { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringArrayGetSetTestClass()
         {
             //Arrange
@@ -54,10 +53,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateStringArrayGetSetTestClass()
         {
             //Arrange
@@ -68,14 +67,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class ProtectedStringArrayGetTestClass
         {
             protected string[] s { get; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateStringTestClass()
         {
             //Arrange
@@ -86,10 +85,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedStringArrayGetTestClass()
         {
             //Arrange
@@ -100,7 +99,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class ProtectedStringArrayGetSetTestClass
@@ -108,7 +107,7 @@ namespace MikValSor.Immutable.Test
             protected string[] s { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_ProtectedStringArrayGetSetTestClass()
         {
             //Arrange
@@ -119,10 +118,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_ProtectedStringArrayGetSetTestClass()
         {
             //Arrange
@@ -133,14 +132,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class PrivateProtectedStringArrayGetTestClass
         {
             private protected string[] s { get; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateProtectedStringArrayGetTestClass()
         {
             //Arrange
@@ -151,10 +150,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateProtectedStringArrayGetTestClass()
         {
             //Arrange
@@ -165,7 +164,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PrivateProtectedStringArrayGetSetTestClass
@@ -173,7 +172,7 @@ namespace MikValSor.Immutable.Test
             private protected string[] s { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PrivateProtectedStringArrayGetSetTestClass()
         {
             //Arrange
@@ -184,10 +183,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PrivateProtectedStringArrayGetSetTestClass()
         {
             //Arrange
@@ -198,14 +197,14 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
         private sealed class InternalStringArrayGetTestClass
         {
             internal string[] s { get; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_InternalStringArrayGetTestClass()
         {
             //Arrange
@@ -216,10 +215,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_InternalStringArrayGetTestClass()
         {
             //Arrange
@@ -230,7 +229,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class InternalStringArrayGetSetTestClass
@@ -238,7 +237,7 @@ namespace MikValSor.Immutable.Test
             internal string[] s { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_InternalStringArrayGetSetTestClass()
         {
             //Arrange
@@ -249,10 +248,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_InternalStringArrayGetSetTestClass()
         {
             //Arrange
@@ -263,7 +262,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PublicStringArrayGetTestClass
@@ -271,7 +270,7 @@ namespace MikValSor.Immutable.Test
             public string[] s { get; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicStringArrayGetTestClass()
         {
             //Arrange
@@ -282,10 +281,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicStringArrayGetTestClass()
         {
             //Arrange
@@ -296,7 +295,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
         private sealed class PublicStringArrayGetSetTestClass
@@ -304,7 +303,7 @@ namespace MikValSor.Immutable.Test
             public string[] s { get; set; }
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_Type_PublicStringArrayGetSetTestClass()
         {
             //Arrange
@@ -315,10 +314,10 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
 
-        [Test]
+        [Fact]
         public void IsImmutable_object_PublicStringArrayGetSetTestClass()
         {
             //Arrange
@@ -329,7 +328,7 @@ namespace MikValSor.Immutable.Test
             var actual = validator.IsImmutable(target);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.False(actual);
         }
     }
 }
