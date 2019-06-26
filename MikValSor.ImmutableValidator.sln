@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MikValSor.ImmutableValidato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikValSor.ImmutableValidator.Test", "source\MikValSor.ImmutableValidator.Test\MikValSor.ImmutableValidator.Test.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "source\Examples\Examples.csproj", "{733FAE3D-FDD9-448B-A206-AE213341DF0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "source\Examples\Examples.csproj", "{733FAE3D-FDD9-448B-A206-AE213341DF0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
